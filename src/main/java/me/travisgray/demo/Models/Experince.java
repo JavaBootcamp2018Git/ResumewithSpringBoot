@@ -1,4 +1,4 @@
-package me.travisgray.demo;
+package me.travisgray.demo.Models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
