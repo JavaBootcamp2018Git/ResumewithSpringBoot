@@ -8,8 +8,7 @@ import me.travisgray.demo.Repositories.SkillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
@@ -35,14 +34,34 @@ public class MainController {
         model.addAttribute("educationlist",educationRepository.findAll());
         model.addAttribute("getexperince",experinceRepository.count());
         model.addAttribute("experincelist",experinceRepository.findAll());
+
         model.addAttribute("resume",resumeRepository.count());
         model.addAttribute("resumelist",resumeRepository.findAll());
         return "index";
 
     }
 
+    @GetMapping("/addresume")
+    public String addResume(Model model){
 
-    
+        //Creating Resume model for new form
+        Resume resume = new Resume();
+        model.addAttribute("resume",new Resume());
+        return "addresume";
+    }
+
+
+//Process and save Resume form
+    @PostMapping("/addresume")
+    public String saveResume(@ModelAttribute("resume") Resume resume){
+        resumeRepository.save(resume);
+        return "redirect:/";
+    }
+
+
+
+
+
 
 
 }
