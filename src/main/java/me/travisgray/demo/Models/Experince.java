@@ -15,6 +15,8 @@ public class Experince {
     public Experince() {
     }
 
+
+
     public Experince(String jobtitle, String companytitle, String startDate, String endDate, String dutylist, ArrayList<Experince> experinceArrayList) {
         this.jobtitle = jobtitle;
         this.companytitle = companytitle;
