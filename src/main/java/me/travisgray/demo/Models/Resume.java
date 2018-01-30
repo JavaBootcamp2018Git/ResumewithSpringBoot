@@ -1,6 +1,7 @@
 package me.travisgray.demo.Models;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -76,4 +77,19 @@ public class Resume {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void addResume(Resume resume){
+        resume.addResume(resume);
+    }
+
+//    public void addSkills(Skills skills){
+//        skills.addSkill(skills);
+//    }
+//
+//    public void addEducation(Education education){
+//        education.addEducation(education);   }
+//
+//    public void addExperince(Experince experince){
+//        experince.addExperince(experince);
+//    }
 }

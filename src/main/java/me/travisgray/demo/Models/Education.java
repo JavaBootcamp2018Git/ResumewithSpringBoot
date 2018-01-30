@@ -1,6 +1,9 @@
 package me.travisgray.demo.Models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -13,24 +16,32 @@ public class Education {
     public Education() {
     }
 
-    public Education(String degree, String major, String university, int gradyear, ArrayList<Education> educationAbstractList) {
+    public Education(String degree, String major, String university, String gradyear) {
         this.degree = degree;
         this.major = major;
         this.university = university;
         this.gradyear = gradyear;
-        this.educationAbstractList = educationAbstractList;
     }
 
 
     @ManyToMany
     private Set<Resume> resumes;
 
+    @NotNull
+    @NotEmpty
     private String degree;
-    private String major;
-    private String university;
-    private int gradyear;
 
-    private ArrayList<Education>educationAbstractList= new ArrayList<>();
+    @NotNull
+    @NotEmpty
+    private String major;
+
+    @NotNull
+    @NotEmpty
+    private String university;
+
+    @NotEmpty
+    @NotNull
+    private String gradyear;
 
     public long getId() {
         return id;
@@ -64,23 +75,17 @@ public class Education {
         this.university = university;
     }
 
-    public int getGradyear() {
+    public String getGradyear() {
         return gradyear;
     }
 
-    public void setGradyear(int gradyear) {
+    public void setGradyear(String gradyear) {
         this.gradyear = gradyear;
-    }
-
-    public ArrayList<Education> getEducationAbstractList() {
-        return educationAbstractList;
-    }
-
-    public void setEducationAbstractList(ArrayList<Education> educationAbstractList) {
-        this.educationAbstractList = educationAbstractList;
     }
 
     public void addEducation(Education education){
         education.addEducation(education);
     }
+
+
 }

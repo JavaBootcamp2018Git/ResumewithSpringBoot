@@ -1,6 +1,9 @@
 package me.travisgray.demo.Models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -13,36 +16,25 @@ public class Skills {
 
     public Skills() {
 
-
     }
 
-    public Skills(ArrayList<Skills> skillsArrayList, String skill, String skillrating) {
-        this.skillsArrayList = skillsArrayList;
+    public Skills(String skill, String skillrating) {
         this.skill = skill;
         this.skillrating = skillrating;
     }
-
-
 
     @ManyToMany
     private Set<Resume>resumes;
 
 
-
-
-
-    private ArrayList<Skills>skillsArrayList = new ArrayList<>();
+    @NotNull
+    @NotEmpty
     private String skill;
+
+    @NotNull
+    @NotEmpty
     private String skillrating;
 
-
-    public ArrayList<Skills> getSkillsArrayList() {
-        return skillsArrayList;
-    }
-
-    public void setSkillsArrayList(ArrayList<Skills> skillsArrayList) {
-        this.skillsArrayList = skillsArrayList;
-    }
 
     public String getSkill() {
         return skill;

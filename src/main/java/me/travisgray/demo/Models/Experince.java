@@ -17,13 +17,12 @@ public class Experince {
 
 
 
-    public Experince(String jobtitle, String companytitle, String startDate, String endDate, String dutylist, ArrayList<Experince> experinceArrayList) {
+    public Experince(String jobtitle, String companytitle, String startDate, String endDate, String dutylist) {
         this.jobtitle = jobtitle;
         this.companytitle = companytitle;
         this.startDate = startDate;
         this.endDate = endDate;
         this.dutylist = dutylist;
-        this.experinceArrayList = experinceArrayList;
     }
 
 
@@ -40,7 +39,6 @@ public class Experince {
 
     private String dutylist;
 
-    private ArrayList<Experince>experinceArrayList = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -90,13 +88,6 @@ public class Experince {
         this.dutylist = dutylist;
     }
 
-    public ArrayList<Experince> getExperinceArrayList() {
-        return experinceArrayList;
-    }
-
-    public void setExperinceArrayList(ArrayList<Experince> experinceArrayList) {
-        this.experinceArrayList = experinceArrayList;
-    }
 
     public void addExperince(Experince experince){
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
@@ -12,25 +12,25 @@
         <h3>Fill out the form below to start creating your Education Section of your Resume!</h3>
     </div>
     <div class="row body">
-        <form action="#">
+        <form th:action="@{/addEducation}" th:object="${education}" method="post">
             <ul>
 
                 <li>
                     <p class="left">
                         <label for="University">Univeristy</label>
-                        <input type="text" name="University" placeholder="university" />
+                        <input th:field="${education.university}" type="text" name="University" placeholder="university" />
                     </p>
                     <p class="left">
                         <label for="Major">Major</label>
-                        <input type="text" name="major" placeholder="major" />
+                        <input th:field="${education.major}" type="text" name="major" placeholder="major" />
                     </p>
                     <p class="left">
                         <label for="Degree">Degree</label>
-                        <input type="text" name="degree" placeholder="degree" />
+                        <input th:field="${education.degree}" type="text" name="degree" placeholder="degree" />
                     </p>
                     <p class="left">
                         <label for="Graduation Year">Graduation Year</label>
-                        <input type="text" name="Graduation Year" placeholder="Graduation Year" />
+                        <input th:field="${education.gradyear}" type="text" name="Graduation Year" placeholder="Graduation Year" />
                     </p>
                 </li>
 
@@ -39,7 +39,7 @@
 
 
                 <li>
-                    <input class="btn btn-submit" type="submit" value="Submit Education" />
+                    <input class="btn btn-submit" type="submit" value="Submit Education" th:href="@{/addEducation}" />
                 </li>
 
             </ul>

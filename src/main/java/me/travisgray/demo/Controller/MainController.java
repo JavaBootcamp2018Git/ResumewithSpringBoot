@@ -13,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.naming.Binding;
 import javax.validation.Valid;
 
 @Controller
@@ -91,9 +89,17 @@ public class MainController {
     }
 
     @PostMapping("/addEducation")
-    public String saveEducation(@ModelAttribute("education")Education education){
-        educationRepository.save(education);
-        return "redirect:/";
+    public String saveEducation(@Valid Education education, BindingResult result){
+
+        {
+            if (result.hasErrors()) {
+                return "index";
+
+            }
+
+            educationRepository.save(education);
+            return "addeducation";
+        }
     }
 
     @GetMapping("/addExperince")
