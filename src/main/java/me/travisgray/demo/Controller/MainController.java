@@ -1,6 +1,9 @@
 package me.travisgray.demo.Controller;
 
+import me.travisgray.demo.Models.Education;
+import me.travisgray.demo.Models.Experince;
 import me.travisgray.demo.Models.Resume;
+import me.travisgray.demo.Models.Skills;
 import me.travisgray.demo.Repositories.EducationRepository;
 import me.travisgray.demo.Repositories.ExperinceRepository;
 import me.travisgray.demo.Repositories.ResumeRepository;
@@ -41,7 +44,7 @@ public class MainController {
 
     }
 
-    @GetMapping("/addresume")
+    @GetMapping("/addResume")
     public String addResume(Model model){
 
         //Creating Resume model for new form
@@ -52,9 +55,48 @@ public class MainController {
 
 
 //Process and save Resume form
-    @PostMapping("/addresume")
+    @PostMapping("/addResume")
     public String saveResume(@ModelAttribute("resume") Resume resume){
         resumeRepository.save(resume);
+        return "redirect:/";
+    }
+
+    @GetMapping("/addSkill")
+    public String addSkill(Model model){
+        Skills skills1 = new Skills();
+        model.addAttribute("skill",new Skills());
+        return "addskill";
+    }
+
+    @PostMapping("/addSkill")
+    public String addSkill(@ModelAttribute("skill")Skills skill){
+        skillsRepository.save(skill);
+        return "redirect:/";
+    }
+
+    @GetMapping("/addEducation")
+    public String addEducation(Model model){
+        Education education = new Education();
+        model.addAttribute("education",new Education());
+        return "addeducation";
+    }
+
+    @PostMapping("/addEducation")
+    public String addEducation(@ModelAttribute("education")Education education){
+        educationRepository.save(education);
+        return "redirect:/";
+    }
+
+    @GetMapping("/addExperince")
+    public String addExperince(Model model){
+        Experince experince = new Experince();
+        model.addAttribute("experince",new Experince());
+        return "addexperince";
+    }
+
+    @PostMapping("/addExperince")
+    public String addExperince(@ModelAttribute("experince")Experince experince){
+        experinceRepository.save(experince);
         return "redirect:/";
     }
 
