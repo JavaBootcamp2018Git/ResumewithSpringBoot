@@ -37,7 +37,6 @@ public class MainController {
         model.addAttribute("educationlist",educationRepository.findAll());
         model.addAttribute("getexperince",experinceRepository.count());
         model.addAttribute("experincelist",experinceRepository.findAll());
-
         model.addAttribute("resume",resumeRepository.count());
         model.addAttribute("resumelist",resumeRepository.findAll());
         return "index";
@@ -69,7 +68,7 @@ public class MainController {
     }
 
     @PostMapping("/addSkill")
-    public String addSkill(@ModelAttribute("skill")Skills skill){
+    public String saveSkill(@ModelAttribute("skill")Skills skill){
         skillsRepository.save(skill);
         return "redirect:/";
     }
@@ -82,7 +81,7 @@ public class MainController {
     }
 
     @PostMapping("/addEducation")
-    public String addEducation(@ModelAttribute("education")Education education){
+    public String saveEducation(@ModelAttribute("education")Education education){
         educationRepository.save(education);
         return "redirect:/";
     }
@@ -95,7 +94,7 @@ public class MainController {
     }
 
     @PostMapping("/addExperince")
-    public String addExperince(@ModelAttribute("experince")Experince experince){
+    public String saveExperince(@ModelAttribute("experince")Experince experince){
         experinceRepository.save(experince);
         return "redirect:/";
     }
