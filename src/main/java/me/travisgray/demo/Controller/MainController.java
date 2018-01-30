@@ -11,7 +11,11 @@ import me.travisgray.demo.Repositories.SkillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.naming.Binding;
+import javax.validation.Valid;
 
 @Controller
 public class MainController {
@@ -45,7 +49,6 @@ public class MainController {
 
     @GetMapping("/addResume")
     public String addResume(Model model){
-
         //Creating Resume model for new form
         Resume resume = new Resume();
         model.addAttribute("resume",new Resume());
@@ -53,11 +56,18 @@ public class MainController {
     }
 
 
-//Process and save Resume form
+//Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@ModelAttribute("resume") Resume resume){
-        resumeRepository.save(resume);
-        return "redirect:/";
+    public String saveResume(@Valid Resume resume, BindingResult result){
+        {
+            if (result.hasErrors()) {
+                return "index";
+
+            }
+
+            resumeRepository.save(resume);
+            return "addresume";
+        }
     }
 
     @GetMapping("/addSkill")

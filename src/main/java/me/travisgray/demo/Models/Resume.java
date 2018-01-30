@@ -1,6 +1,9 @@
 package me.travisgray.demo.Models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -10,8 +13,16 @@ public class Resume {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
+    @NotEmpty
     private String firstname;
+
+    @NotNull
+    @NotEmpty
     private String lastname;
+
+    @NotNull
+    @NotEmpty
     private String email;
 
 
