@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Create Resume</title>
     <link rel = "stylesheet" type = "text/css" href = "css/createresumestyles.css"></link>
+    <object
     <script type="text/javascript" src="js/createresume.js"></script>
 </head>
 <body>
@@ -104,7 +105,7 @@
                 </div>
 
                 <div class="job-wrapper clearfix">
-                    <div class="experience-title" th:inline="text">[[${experince.jobtitle}}]]</div>
+                    <div class="experience-title" th:text="${resume.experience.jobtitle}">Job Title</div>
                     <!-- JOB TITLE  -->
                     <div class="company-description">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>

@@ -1,23 +1,22 @@
 package me.travisgray.demo.Models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Set;
 
 @Entity
-public class Experince {
+public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
 
-    public Experince() {
+    public Experience() {
     }
 
 
 
-    public Experince(String jobtitle, String companytitle, String startDate, String endDate, String dutylist) {
+    public Experience(String jobtitle, String companytitle, String startDate, String endDate, String dutylist) {
         this.jobtitle = jobtitle;
         this.companytitle = companytitle;
         this.startDate = startDate;
@@ -26,7 +25,7 @@ public class Experince {
     }
 
 
-    @ManyToMany(mappedBy = "experinces")
+    @ManyToMany(mappedBy = "experiences")
     private Set<Resume> resumes;
 
     private String jobtitle;
@@ -89,8 +88,8 @@ public class Experince {
     }
 
 
-    public void addExperince(Experince experince){
+    public void addExperience(Experience experience){
 
-        experince.addExperince(experince);
+        experience.addExperience(experience);
     }
 }

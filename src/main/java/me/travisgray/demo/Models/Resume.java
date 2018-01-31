@@ -1,7 +1,6 @@
 package me.travisgray.demo.Models;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,7 +30,7 @@ public class Resume {
     private Set<Skills> skills;
 
     @ManyToMany()
-    private Set<Experince>experinces;
+    private Set<Experience>experiences;
 
     @ManyToMany()
     private Set<Education>educations;
@@ -40,9 +39,9 @@ public class Resume {
 
     }
 
-    public Resume(Set<Skills> skills , Set<Education>educations,Set<Experince>experinces) {
+    public Resume(Set<Skills> skills , Set<Education>educations,Set<Experience>experience) {
         this.skills = new HashSet<Skills>();
-        this.experinces = new HashSet<Experince>();
+        this.experiences = new HashSet<Experience>();
         this.educations = new HashSet<Education>();
 
     }
@@ -50,7 +49,7 @@ public class Resume {
     public Resume(String firstname, String lastname, String email) {
         this.skills = new HashSet<Skills>();
         this.educations = new HashSet<Education>();
-        this.experinces = new HashSet<Experince>();
+        this.experiences = new HashSet<Experience>();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -100,7 +99,7 @@ public class Resume {
         this.educations.add(e);
     }
 
-    public void addExperince(Experince ex){
-        this.experinces.add(ex);
+    public void addExperience(Experience ex){
+        this.experiences.add(ex);
     }
 }

@@ -1,11 +1,11 @@
 package me.travisgray.demo.Controller;
 
 import me.travisgray.demo.Models.Education;
-import me.travisgray.demo.Models.Experince;
+import me.travisgray.demo.Models.Experience;
 import me.travisgray.demo.Models.Resume;
 import me.travisgray.demo.Models.Skills;
 import me.travisgray.demo.Repositories.EducationRepository;
-import me.travisgray.demo.Repositories.ExperinceRepository;
+import me.travisgray.demo.Repositories.ExperienceRepository;
 import me.travisgray.demo.Repositories.ResumeRepository;
 import me.travisgray.demo.Repositories.SkillsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class MainController {
     EducationRepository educationRepository;
 
     @Autowired
-    ExperinceRepository experinceRepository;
+    ExperienceRepository experienceRepository;
 
     @Autowired
     ResumeRepository resumeRepository;
@@ -37,8 +37,8 @@ public class MainController {
         model.addAttribute("skilllist", skillsRepository.findAll());
         model.addAttribute("geteducation", educationRepository.count());
         model.addAttribute("educationlist", educationRepository.findAll());
-        model.addAttribute("getexperince", experinceRepository.count());
-        model.addAttribute("experincelist", experinceRepository.findAll());
+        model.addAttribute("getexperince", experienceRepository.count());
+        model.addAttribute("experincelist", experienceRepository.findAll());
         model.addAttribute("resume", resumeRepository.count());
         model.addAttribute("resumelist", resumeRepository.findAll());
         return "index";
@@ -111,19 +111,19 @@ public class MainController {
 
     @GetMapping("/addExperince")
     public String addExperince(Model model) {
-        Experince experince = new Experince();
-        model.addAttribute("experince", new Experince());
+        Experience experience = new Experience();
+        model.addAttribute("experience", new Experience());
         return "addexperince";
     }
 
     @PostMapping("/addExperince")
-    public String saveExperince(@Valid Experince experince, BindingResult result) {
+    public String saveExperince(@Valid Experience experience, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "index";
             }
         }
-        experinceRepository.save(experince);
+        experienceRepository.save(experience);
         return "addexperince";
     }
 
