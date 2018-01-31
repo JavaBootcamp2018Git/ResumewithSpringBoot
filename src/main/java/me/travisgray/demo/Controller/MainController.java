@@ -32,31 +32,31 @@ public class MainController {
 
 
     @RequestMapping("/")
-    public String showIndex(Model model){
+    public String showIndex(Model model) {
         model.addAttribute("getskills", skillsRepository.count());
-        model.addAttribute("skilllist",skillsRepository.findAll());
-        model.addAttribute("geteducation",educationRepository.count());
-        model.addAttribute("educationlist",educationRepository.findAll());
-        model.addAttribute("getexperince",experinceRepository.count());
-        model.addAttribute("experincelist",experinceRepository.findAll());
-        model.addAttribute("resume",resumeRepository.count());
-        model.addAttribute("resumelist",resumeRepository.findAll());
+        model.addAttribute("skilllist", skillsRepository.findAll());
+        model.addAttribute("geteducation", educationRepository.count());
+        model.addAttribute("educationlist", educationRepository.findAll());
+        model.addAttribute("getexperince", experinceRepository.count());
+        model.addAttribute("experincelist", experinceRepository.findAll());
+        model.addAttribute("resume", resumeRepository.count());
+        model.addAttribute("resumelist", resumeRepository.findAll());
         return "index";
 
     }
 
     @GetMapping("/addResume")
-    public String addResume(Model model){
+    public String addResume(Model model) {
         //Creating Resume model for new form
         Resume resume = new Resume();
-        model.addAttribute("resume",new Resume());
+        model.addAttribute("resume", new Resume());
         return "addresume";
     }
 
 
-//Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
+    //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@Valid Resume resume, BindingResult result){
+    public String saveResume(@Valid Resume resume, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "index";
@@ -69,27 +69,34 @@ public class MainController {
     }
 
     @GetMapping("/addSkill")
-    public String addSkill(Model model){
+    public String addSkill(Model model) {
         Skills skills1 = new Skills();
-        model.addAttribute("skill",new Skills());
+        model.addAttribute("skill", new Skills());
         return "addskill";
     }
 
     @PostMapping("/addSkill")
-    public String saveSkill(@ModelAttribute("skill")Skills skill){
-        skillsRepository.save(skill);
-        return "redirect:/";
+    public String saveSkill(@Valid Skills skill, BindingResult result) {
+
+        {
+            if (result.hasErrors()) {
+                return "index";
+            }
+
+            skillsRepository.save(skill);
+            return "addskill";
+        }
     }
 
     @GetMapping("/addEducation")
-    public String addEducation(Model model){
+    public String addEducation(Model model) {
         Education education = new Education();
-        model.addAttribute("education",new Education());
+        model.addAttribute("education", new Education());
         return "addeducation";
     }
 
     @PostMapping("/addEducation")
-    public String saveEducation(@Valid Education education, BindingResult result){
+    public String saveEducation(@Valid Education education, BindingResult result) {
 
         {
             if (result.hasErrors()) {
@@ -103,17 +110,23 @@ public class MainController {
     }
 
     @GetMapping("/addExperince")
-    public String addExperince(Model model){
+    public String addExperince(Model model) {
         Experince experince = new Experince();
-        model.addAttribute("experince",new Experince());
+        model.addAttribute("experince", new Experince());
         return "addexperince";
     }
 
     @PostMapping("/addExperince")
-    public String saveExperince(@ModelAttribute("experince")Experince experince){
+    public String saveExperince(@Valid Experince experince, BindingResult result) {
+        {
+            if (result.hasErrors()) {
+                return "index";
+            }
+        }
         experinceRepository.save(experince);
-        return "redirect:/";
+        return "addexperince";
     }
+
 
 
 

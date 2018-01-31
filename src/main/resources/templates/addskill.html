@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
@@ -12,17 +12,17 @@
         <h3>Fill out the form below to start creating your Skillset Section of your Resume!</h3>
     </div>
     <div class="row body">
-        <form action="#">
+        <form th:action="@{/addskill}" th:object="${skill}" method="post">
             <ul>
 
                 <li>
                     <p class="left">
                         <label for="skill">Skill</label>
-                        <input type="text" name="skill" placeholder="Please type your primary skillset" />
+                        <input th:field="{skill.skill}" type="text" name="skill" placeholder="Please type your primary skillset" />
                     </p>
                     <p class="left">
                         <label for="skill">Skill Rating/Profiencey</label>
-                        <input type="text" name="skill" placeholder="Please type your skill rating" />
+                        <input  th:field="{skill.skillrating}"  type="text" name="skill" placeholder="Please type your skill rating" />
                     </p>
                 </li>
 
@@ -33,7 +33,7 @@
 
 
                 <li>
-                    <input class="btn btn-submit" type="submit" value="Submit Skills" />
+                    <input class="btn btn-submit" type="submit" value="Submit Skills" th:href="@{/addSkill}" />
                 </li>
 
             </ul>
