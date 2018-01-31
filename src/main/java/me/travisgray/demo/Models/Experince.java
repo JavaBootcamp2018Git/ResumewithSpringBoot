@@ -26,7 +26,7 @@ public class Experince {
     }
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "experinces")
     private Set<Resume> resumes;
 
     private String jobtitle;

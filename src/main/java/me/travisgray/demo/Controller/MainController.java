@@ -129,11 +129,8 @@ public class MainController {
 
 //passing all models to method to for thymeleaf access
     @GetMapping("/createResume")
-    public String createResume(@ModelAttribute("experince") Experince experince,@ModelAttribute("skill") Skills skills,@ModelAttribute("education") Education education,@ModelAttribute("resume") Resume resume,Model model ){
+    public String createResume(@ModelAttribute("resume") Resume resume,Model model ){
         model.addAttribute("resume",resumeRepository.findAll());
-        model.addAttribute("experince",experinceRepository.findAll());
-        model.addAttribute("education",educationRepository.findAll());
-        model.addAttribute("skills",skillsRepository.findAll());
         return "createresume";
 
 

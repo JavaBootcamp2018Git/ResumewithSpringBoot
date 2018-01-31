@@ -30,23 +30,27 @@ public class Resume {
     @ManyToMany()
     private Set<Skills> skills;
 
-    @ManyToMany(mappedBy = "resumes")
+    @ManyToMany()
     private Set<Experince>experinces;
 
-    @ManyToMany(mappedBy = "resumes")
+    @ManyToMany()
     private Set<Education>educations;
 
     public Resume() {
 
     }
 
-    public Resume(Set<Skills> skills) {
+    public Resume(Set<Skills> skills , Set<Education>educations,Set<Experince>experinces) {
         this.skills = new HashSet<Skills>();
+        this.experinces = new HashSet<Experince>();
+        this.educations = new HashSet<Education>();
 
     }
 
     public Resume(String firstname, String lastname, String email) {
         this.skills = new HashSet<Skills>();
+        this.educations = new HashSet<Education>();
+        this.experinces = new HashSet<Experince>();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -92,10 +96,11 @@ public class Resume {
         this.skills.add(s);
     }
 
-//    public void addEducation(Education education){
-//        education.addEducation(education);   }
-//
-//    public void addExperince(Experince experince){
-//        experince.addExperince(experince);
-//    }
+    public void addEducation(Education e){
+        this.educations.add(e);
+    }
+
+    public void addExperince(Experince ex){
+        this.experinces.add(ex);
+    }
 }

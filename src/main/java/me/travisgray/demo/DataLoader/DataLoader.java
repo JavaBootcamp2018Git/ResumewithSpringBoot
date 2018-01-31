@@ -39,23 +39,28 @@ public class DataLoader implements CommandLineRunner{
         Skills skills2 = new Skills("HTML","Advanced");
         skillsRepository.save(skills2);
 
+        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State","2015");
+        educationRepository.save(education1);
 
+        Education education2 = new Education("Bachelors of Science","Biobehavioral Health","Penn State","2015");
+        educationRepository.save(education2);
+
+
+        Experince experince2 = new Experince("Marketing Consultant","Seaton Real Esate","Jan 2010","May 2013","Marketing and Sales");
+        experinceRepository.save(experince2);
+
+
+        Experince experince3 = new Experince("Sales","Mercedes Benz","May 2014","May 2018","Talking with customers");
+        experinceRepository.save(experince3);
 
         resume.addSkills(skills1);
+        resume.addSkills(skills2);
         resumeRepository.save(resume);
 
 
 
-//        Skills skills2 = new Skills("HTML","Advanced");
-//        skillsRepository.save(skills2);
-//        resume.addSkills(skills2);
-//        resumeRepository.save(resume);
 
-//        Education education = new Education("Bachelors of Science","Biobehavioral Health","Penn State",2015);
-//        educationRepository.save(education);
 //
 //
-//        Experince experince = new Experince("Marketing Consultant","Seaton Real Esate","Jan 2010","May 2013","Marketing and Sales");
-//        experinceRepository.save(experince);
     }
 }

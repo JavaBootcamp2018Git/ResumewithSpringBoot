@@ -24,7 +24,7 @@ public class Education {
     }
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "educations")
     private Set<Resume> resumes;
 
     @NotNull
@@ -83,9 +83,9 @@ public class Education {
         this.gradyear = gradyear;
     }
 
-    public void addEducation(Education education){
-        education.addEducation(education);
-    }
+//    public void addEducation(Education education){
+//        education.addEducation(education);
+//    }
 
 
 }
