@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Component
 public class DataLoader implements CommandLineRunner{
@@ -33,12 +33,24 @@ public class DataLoader implements CommandLineRunner{
     @Override
     public void run(String...strings)throws Exception{
         Resume resume = new Resume("Travis","Gray","traviosgray1@gmail.com");
+
+        Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
+        skillsRepository.save(skills1);
+        Skills skills2 = new Skills("HTML","Advanced");
+        skillsRepository.save(skills2);
+
+
+
+        resume.addSkills(skills1);
         resumeRepository.save(resume);
 
-//        Skills skills = new Skills("Java Spring Boot Development","Intermediate");
-//        skillsRepository.save(skills);
-//
-//
+
+
+//        Skills skills2 = new Skills("HTML","Advanced");
+//        skillsRepository.save(skills2);
+//        resume.addSkills(skills2);
+//        resumeRepository.save(resume);
+
 //        Education education = new Education("Bachelors of Science","Biobehavioral Health","Penn State",2015);
 //        educationRepository.save(education);
 //

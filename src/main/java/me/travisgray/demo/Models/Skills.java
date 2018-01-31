@@ -22,8 +22,7 @@ public class Skills {
         this.skill = skill;
         this.skillrating = skillrating;
     }
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "skills")
     private Set<Resume>resumes;
 
 
@@ -52,9 +51,10 @@ public class Skills {
         this.skillrating = skillrating;
     }
 
-    public void addSkill(Skills skills){
-        skills.addSkill(skills);
-    }
+//    public void addResume(Resume r){
+//       this.resumes.add(r);
+//    }
+
 
 
 }

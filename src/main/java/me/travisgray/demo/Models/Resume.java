@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,8 +27,7 @@ public class Resume {
     @NotEmpty
     private String email;
 
-
-    @ManyToMany(mappedBy = "resumes")
+    @ManyToMany()
     private Set<Skills> skills;
 
     @ManyToMany(mappedBy = "resumes")
@@ -40,7 +40,13 @@ public class Resume {
 
     }
 
+    public Resume(Set<Skills> skills) {
+        this.skills = new HashSet<Skills>();
+
+    }
+
     public Resume(String firstname, String lastname, String email) {
+        this.skills = new HashSet<Skills>();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -82,10 +88,10 @@ public class Resume {
         resume.addResume(resume);
     }
 
-//    public void addSkills(Skills skills){
-//        skills.addSkill(skills);
-//    }
-//
+    public void addSkills(Skills s) {
+        this.skills.add(s);
+    }
+
 //    public void addEducation(Education education){
 //        education.addEducation(education);   }
 //
