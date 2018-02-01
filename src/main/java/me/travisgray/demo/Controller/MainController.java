@@ -69,7 +69,7 @@ public class MainController {
     }
 
     @GetMapping("/addSkill")
-    public String addSkill(Model model) {
+    public String addSkill(Model model ,@PathVariable("resume")Resume resume) {
         Skills skills = new Skills();
         model.addAttribute("skills", new Skills());
         return "addskill";
@@ -89,7 +89,7 @@ public class MainController {
     }
 
     @GetMapping("/addEducation")
-    public String addEducation(Model model) {
+    public String addEducation(Model model,@PathVariable("resume")Resume resume) {
         Education education = new Education();
         model.addAttribute("education", new Education());
         return "addeducation";
@@ -132,6 +132,23 @@ public class MainController {
     @GetMapping("/createResume")
     public String createResume(Model model){
         Resume resume = resumeRepository.findOne(Long.valueOf(1));
+        for (Experience eachexperience: resume.experiences){
+            System.out.println(eachexperience.getJobtitle());
+        }
+
+        for (Skills eachskill: resume.skills){
+            System.out.println(eachskill.getSkill());
+            System.out.println(eachskill.getSkillrating());
+        }
+
+        for(Education eachEducation : resume.educations){
+            System.out.println(eachEducation.getDegree());
+            System.out.println(eachEducation.getMajor());
+            System.out.println(eachEducation.getUniversity());
+            System.out.println(eachEducation.getGradyear());
+        }
+
+        System.out.println("Print Resume experiences using String"+resume.getExperiences().toString());
         System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
         model.addAttribute("resume",resume);
         return "createresume";

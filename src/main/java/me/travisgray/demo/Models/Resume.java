@@ -27,13 +27,13 @@ public class Resume {
     private String email;
 
     @ManyToMany()
-    private Set<Skills> skills;
+    public Set<Skills> skills;
 
     @ManyToMany()
     public Set<Experience>experiences;
 
     @ManyToMany()
-    private Set<Education>educations;
+    public Set<Education>educations;
 
     public Resume() {
 

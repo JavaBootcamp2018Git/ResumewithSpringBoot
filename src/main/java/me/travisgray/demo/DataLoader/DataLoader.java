@@ -34,29 +34,22 @@ public class DataLoader implements CommandLineRunner{
 
         Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
         skillsRepository.save(skills1);
-        Skills skills2 = new Skills("HTML","Advanced");
-        skillsRepository.save(skills2);
 
-        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State","2015");
+
+        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State University","Graduation: 2015");
         educationRepository.save(education1);
 
-        Education education2 = new Education("Bachelors of Science","Biobehavioral Health","Penn State","2015");
-        educationRepository.save(education2);
 
 
         Experience experience2 = new Experience("Marketing Consultant","Seaton Real Esate","Jan 2010","May 2013","Marketing and Sales");
         experienceRepository.save(experience2);
+        System.out.println(experience2.getJobtitle());
 
 
-        Experience experience3 = new Experience("Sales","Mercedes Benz","May 2014","May 2018","Talking with customers");
-        experienceRepository.save(experience3);
 
         resume.addSkills(skills1);
-        resume.addSkills(skills2);
         resume.addEducation(education1);
-        resume.addEducation(education2);
         resume.addExperience(experience2);
-        resume.addExperience(experience3);
         resumeRepository.save(resume);
 
 
