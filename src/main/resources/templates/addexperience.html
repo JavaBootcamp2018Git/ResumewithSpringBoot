@@ -12,29 +12,29 @@
         <h3>Fill out the form below to start creating your Experince Section of your Resume!</h3>
     </div>
     <div class="row body">
-        <form th:action="@{/addExperince}" th:object="${experince}" method="post">
+        <form th:action="@{/addExperience}" th:object="${experience}" method="post">
             <ul>
 
                 <li>
                     <p class="left">
                         <label for="Company_Title">Company Title</label>
-                        <input th:field="${experince.companytitle}" type="text" name="Company_Title" placeholder="Company_Title" />
+                        <input th:field="${experience.companytitle}" type="text" name="Company_Title" placeholder="Company_Title" />
                     </p>
                     <p class="left">
                         <label for="job_title">Job Title</label>
-                        <input th:field="${experince.jobtitle}" type="text" name="job_title" placeholder="job title" />
+                        <input th:field="${experience.jobtitle}" type="text" name="job_title" placeholder="job title" />
                     </p>
                     <p class="left">
                         <label for="start_date">Start Date</label>
-                        <input th:field="${experince.startDate}" type="text" name="start_date" placeholder="start date" />
+                        <input th:field="${experience.startDate}" type="text" name="start_date" placeholder="start date" />
                     </p>
                     <p class="left">
                         <label for="End_date">End Date</label>
-                        <input th:field="${experince.endDate}" type="text" name="end_date" placeholder="end date" />
+                        <input th:field="${experience.endDate}" type="text" name="end_date" placeholder="end date" />
                     </p>
                     <p class="left">
                         <label for="MainJob_Duty">Main Job Duty</label>
-                        <input th:field="${experince.dutylist}" type="text" name="Main Job Duty" placeholder="Main Job Duty" />
+                        <input th:field="${experience.dutylist}" type="text" name="Main Job Duty" placeholder="Main Job Duty" />
                     </p>
                 </li>
 

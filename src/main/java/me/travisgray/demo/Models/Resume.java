@@ -30,7 +30,7 @@ public class Resume {
     private Set<Skills> skills;
 
     @ManyToMany()
-    private Set<Experience>experiences;
+    public Set<Experience>experiences;
 
     @ManyToMany()
     private Set<Education>educations;
@@ -101,5 +101,29 @@ public class Resume {
 
     public void addExperience(Experience ex){
         this.experiences.add(ex);
+    }
+
+    public Set<Skills> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<Skills> skills) {
+        this.skills = skills;
+    }
+
+    public Set<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(Set<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public Set<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(Set<Education> educations) {
+        this.educations = educations;
     }
 }

@@ -70,8 +70,8 @@ public class MainController {
 
     @GetMapping("/addSkill")
     public String addSkill(Model model) {
-        Skills skills1 = new Skills();
-        model.addAttribute("skill", new Skills());
+        Skills skills = new Skills();
+        model.addAttribute("skills", new Skills());
         return "addskill";
     }
 
@@ -109,28 +109,31 @@ public class MainController {
         }
     }
 
-    @GetMapping("/addExperince")
-    public String addExperince(Model model) {
+    @GetMapping("/addExperience")
+    public String addExperience(Model model) {
         Experience experience = new Experience();
         model.addAttribute("experience", new Experience());
-        return "addexperince";
+        return "addexperience";
     }
 
-    @PostMapping("/addExperince")
-    public String saveExperince(@Valid Experience experience, BindingResult result) {
+    @PostMapping("/addExperience")
+    public String saveExperience(@Valid Experience experience, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "index";
             }
         }
         experienceRepository.save(experience);
-        return "addexperince";
+        return "addexperience";
     }
 
 //passing all models to method to for thymeleaf access
+    //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access
     @GetMapping("/createResume")
-    public String createResume(@ModelAttribute("resume") Resume resume,Model model ){
-        model.addAttribute("resume",resumeRepository.findAll());
+    public String createResume(Model model){
+        Resume resume = resumeRepository.findOne(Long.valueOf(1));
+        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
+        model.addAttribute("resume",resume);
         return "createresume";
 
 
