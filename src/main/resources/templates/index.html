@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
@@ -9,7 +9,12 @@
 <header class="bg-image">
     <div class="container">
         <h1>Resume Maker Pro</h1>
-        <a href="#" class="btn btn-transparent">Create yours today!</a>
+        <a th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
+        <a th:href="@{/addSkill}" class="btn btn-transparent">Add Skill!</a>
+        <a th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
+        <a th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
+        <p>After Typing in forms click here to see You completed Resume! </p>
+        <a th:href="@{/createResume}" class="btn btn-transparent">Show your new Resume!</a>
     </div>
 </header>
 
