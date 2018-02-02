@@ -18,11 +18,11 @@
                 <li>
                     <p class="left">
                         <label for="skill">Skill</label>
-                        <input th:field="${skills.skill}" type="text" name="skill" placeholder="Please type your primary skillset" />
+                        <input th:field="${skills.skill}" type="text" name="skill" placeholder="Please type your primary skillset" /><span th:if="${#fields.hasErrors('skill')}" th:errors="*{skill}"></span>
                     </p>
                     <p class="left">
                         <label for="skill">Skill Rating/Profiencey</label>
-                        <input  th:field="${skills.skillrating}"  type="text" name="skill" placeholder="Please type your skill rating" />
+                        <input  th:field="${skills.skillrating}"  type="text" name="skill" placeholder="Please type your skill rating" /><span th:if="${#fields.hasErrors('skillrating')}" th:errors="*{skillrating}"></span>
                     </p>
                 </li>
 

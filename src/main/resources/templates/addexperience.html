@@ -18,23 +18,23 @@
                 <li>
                     <p class="left">
                         <label for="Company_Title">Company Title</label>
-                        <input th:field="${experience.companytitle}" type="text" name="Company_Title" placeholder="Company_Title" />
+                        <input th:field="${experience.companytitle}" type="text" name="Company_Title" placeholder="Company_Title" /><span th:if="${#fields.hasErrors('companytitle')}" th:errors="*{companytitle}"></span>
                     </p>
                     <p class="left">
                         <label for="job_title">Job Title</label>
-                        <input th:field="${experience.jobtitle}" type="text" name="job_title" placeholder="job title" />
+                        <input th:field="${experience.jobtitle}" type="text" name="job_title" placeholder="job title" /><span th:if="${#fields.hasErrors('jobtitle')}" th:errors="*{jobtitle}"></span>
                     </p>
                     <p class="left">
                         <label for="start_date">Start Date</label>
-                        <input th:field="${experience.startDate}" type="text" name="start_date" placeholder="start date" />
+                        <input th:field="${experience.startDate}" type="text" name="start_date" placeholder="start date" /><span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
                     </p>
                     <p class="left">
                         <label for="End_date">End Date</label>
-                        <input th:field="${experience.endDate}" type="text" name="end_date" placeholder="end date" />
+                        <input th:field="${experience.endDate}" type="text" name="end_date" placeholder="end date" /><span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></span>
                     </p>
                     <p class="left">
                         <label for="MainJob_Duty">Main Job Duty</label>
-                        <input th:field="${experience.dutylist}" type="text" name="Main Job Duty" placeholder="Main Job Duty" />
+                        <input th:field="${experience.dutylist}" type="text" name="Main Job Duty" placeholder="Main Job Duty" /><span th:if="${#fields.hasErrors('dutylist')}" th:errors="*{dutylist}"></span>
                     </p>
                 </li>
 

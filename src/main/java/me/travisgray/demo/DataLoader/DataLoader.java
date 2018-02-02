@@ -53,9 +53,5 @@ public class DataLoader implements CommandLineRunner{
         resumeRepository.save(resume);
 
 
-
-
-//
-//
     }
 }

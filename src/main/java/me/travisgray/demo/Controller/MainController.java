@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -56,56 +58,58 @@ public class MainController {
 
     //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@Valid Resume resume, BindingResult result) {
+    public String saveResume(@Valid @ModelAttribute("resume") Resume resume, BindingResult result) {
         {
             if (result.hasErrors()) {
-                return "index";
+                return "addresume";
+
 
             }
 
             resumeRepository.save(resume);
-            return "addresume";
+            return "redirect:/";
         }
     }
 
     @GetMapping("/addSkill")
-    public String addSkill(Model model ,@PathVariable("resume")Resume resume) {
+    public String addSkill(Model model) {
         Skills skills = new Skills();
         model.addAttribute("skills", new Skills());
         return "addskill";
     }
 
     @PostMapping("/addSkill")
-    public String saveSkill(@Valid Skills skill, BindingResult result) {
+    public String saveSkill(@Valid @ModelAttribute("skills") Skills skill, BindingResult result) {
 
         {
             if (result.hasErrors()) {
-                return "index";
+                return "addskill";
             }
 
             skillsRepository.save(skill);
-            return "addskill";
+            return "redirect:/";
         }
     }
 
     @GetMapping("/addEducation")
-    public String addEducation(Model model,@PathVariable("resume")Resume resume) {
+    public String addEducation(Model model) {
         Education education = new Education();
         model.addAttribute("education", new Education());
         return "addeducation";
     }
 
     @PostMapping("/addEducation")
-    public String saveEducation(@Valid Education education, BindingResult result) {
+    public String saveEducation(@Valid @ModelAttribute("education") Education education, BindingResult result) {
 
         {
             if (result.hasErrors()) {
-                return "index";
+                return "addeducation";
+
 
             }
 
             educationRepository.save(education);
-            return "addeducation";
+            return "redirect:/";
         }
     }
 
@@ -117,20 +121,24 @@ public class MainController {
     }
 
     @PostMapping("/addExperience")
-    public String saveExperience(@Valid Experience experience, BindingResult result) {
+    public String saveExperience(@Valid @ModelAttribute("experience") Experience experience, BindingResult result) {
         {
             if (result.hasErrors()) {
-                return "index";
+                return "addexperience";
             }
         }
         experienceRepository.save(experience);
-        return "addexperience";
+        return "redirect:/";
     }
 
 //passing all models to method to for thymeleaf access
     //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access
     @GetMapping("/createResume")
     public String createResume(Model model){
+
+//        String resume = request.getParameter("resume");
+
+//        Testing for Thymeleaf model code for final resume output
         Resume resume = resumeRepository.findOne(Long.valueOf(1));
         for (Experience eachexperience: resume.experiences){
             System.out.println(eachexperience.getJobtitle());
