@@ -12,7 +12,7 @@ public class Resume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    public long id;
 
     @NotNull
     @NotEmpty

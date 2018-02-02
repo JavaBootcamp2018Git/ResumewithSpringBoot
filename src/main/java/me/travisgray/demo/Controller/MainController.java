@@ -32,21 +32,6 @@ public class MainController {
     @Autowired
     ResumeRepository resumeRepository;
 
-
-    @RequestMapping("/")
-    public String showIndex(Model model) {
-        model.addAttribute("getskills", skillsRepository.count());
-        model.addAttribute("skilllist", skillsRepository.findAll());
-        model.addAttribute("geteducation", educationRepository.count());
-        model.addAttribute("educationlist", educationRepository.findAll());
-        model.addAttribute("getexperince", experienceRepository.count());
-        model.addAttribute("experincelist", experienceRepository.findAll());
-        model.addAttribute("resume", resumeRepository.count());
-        model.addAttribute("resumelist", resumeRepository.findAll());
-        return "index";
-
-    }
-
     @GetMapping("/addResume")
     public String addResume(Model model) {
         //Creating Resume model for new form
@@ -55,10 +40,28 @@ public class MainController {
         return "addresume";
     }
 
+//    Find ID from resume the return to indexpage so that it see the id use path variable to make sure id is passed then return to index then whenn going to create reume route loop through
+//    Try this on on class to start then move into other collections 
+
+    @RequestMapping("/")
+    public String showIndex(Model model) {
+//        model.addAttribute("getskills", skillsRepository.count());
+//        model.addAttribute("skilllist", skillsRepository.findAll());
+//        model.addAttribute("geteducation", educationRepository.count());
+//        model.addAttribute("educationlist", educationRepository.findAll());
+//        model.addAttribute("getexperince", experienceRepository.count());
+//        model.addAttribute("experincelist", experienceRepository.findAll());
+//        model.addAttribute("resume", resumeRepository.count());
+        model.addAttribute("resumelist", resumeRepository.findAll());
+        return "index";
+
+    }
+
+
 
     //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@Valid @ModelAttribute("resume") Resume resume, BindingResult result) {
+    public String saveResume(@Valid Resume resume, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "addresume";
@@ -79,7 +82,7 @@ public class MainController {
     }
 
     @PostMapping("/addSkill")
-    public String saveSkill(@Valid @ModelAttribute("skills") Skills skill, BindingResult result) {
+    public String saveSkill(@Valid Skills skill, BindingResult result) {
 
         {
             if (result.hasErrors()) {
@@ -99,7 +102,7 @@ public class MainController {
     }
 
     @PostMapping("/addEducation")
-    public String saveEducation(@Valid @ModelAttribute("education") Education education, BindingResult result) {
+    public String saveEducation(@Valid Education education, BindingResult result) {
 
         {
             if (result.hasErrors()) {
@@ -109,6 +112,8 @@ public class MainController {
             }
 
             educationRepository.save(education);
+            System.out.println(educationRepository.toString());
+            System.out.println(education.getGradyear()+education.getDegree()+education.getMajor()+education.getUniversity()+education.getId());
             return "redirect:/";
         }
     }
@@ -121,44 +126,58 @@ public class MainController {
     }
 
     @PostMapping("/addExperience")
-    public String saveExperience(@Valid @ModelAttribute("experience") Experience experience, BindingResult result) {
+    public String saveExperience(@Valid Experience experience, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "addexperience";
             }
         }
+
         experienceRepository.save(experience);
+        System.out.println(experienceRepository.toString());
+        System.out.println(experience.getJobtitle()+experience.getCompanytitle()+experience.getJobtitle()+experience.getStartDate()+experience.getEndDate());
         return "redirect:/";
     }
 
 //passing all models to method to for thymeleaf access
     //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access
-    @GetMapping("/createResume")
-    public String createResume(Model model){
+    @PostMapping("/createResume/{id}")
+    public String createResume(HttpServletRequest request,Model model){
 
-//        String resume = request.getParameter("resume");
+//
+
+//        Binding a Model(Object Resumeid ) to parameter passed by button in "index" line 17 in header
+//        Saving resume model id from parameter to resume repo before adding model attribute
+        Resume resume = resumeRepository.findOne( new Long (request.getParameter("id")));
+        model.addAttribute("resume",resume);
+
+
 
 //        Testing for Thymeleaf model code for final resume output
-        Resume resume = resumeRepository.findOne(Long.valueOf(1));
-        for (Experience eachexperience: resume.experiences){
-            System.out.println(eachexperience.getJobtitle());
-        }
+        //Getting Resume id containing all attributes
 
-        for (Skills eachskill: resume.skills){
-            System.out.println(eachskill.getSkill());
-            System.out.println(eachskill.getSkillrating());
-        }
 
-        for(Education eachEducation : resume.educations){
-            System.out.println(eachEducation.getDegree());
-            System.out.println(eachEducation.getMajor());
-            System.out.println(eachEducation.getUniversity());
-            System.out.println(eachEducation.getGradyear());
-        }
-
-        System.out.println("Print Resume experiences using String"+resume.getExperiences().toString());
-        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
-        model.addAttribute("resume",resume);
+//        resume = resumeRepository.findOne(Long.valueOf(1));
+//        for (Experience eachexperience: resume.experiences){
+//            System.out.println(eachexperience.getJobtitle());
+//        }
+//
+//        for (Skills eachskill: resume.skills){
+//            System.out.println(eachskill.getSkill());
+//            System.out.println(eachskill.getSkillrating());
+//        }
+//
+//        for(Education eachEducation : resume.educations){
+//            System.out.println(eachEducation.getDegree());
+//            System.out.println(eachEducation.getMajor());
+//            System.out.println(eachEducation.getUniversity());
+//            System.out.println(eachEducation.getGradyear());
+//        }
+//
+//
+//        System.out.println("Print Resume experiences using String"+resume.getExperiences().toString());
+//        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
+//        //Adding Resume id to model
         return "createresume";
 
 
