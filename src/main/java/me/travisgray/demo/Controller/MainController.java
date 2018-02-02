@@ -41,7 +41,7 @@ public class MainController {
     }
 
 //    Find ID from resume the return to indexpage so that it see the id use path variable to make sure id is passed then return to index then whenn going to create reume route loop through
-//    Try this on on class to start then move into other collections 
+//    Try this on on class to start then move into other collections
 
     @RequestMapping("/")
     public String showIndex(Model model) {
@@ -140,8 +140,11 @@ public class MainController {
     }
 
 //passing all models to method to for thymeleaf access
-    //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access
-    @PostMapping("/createResume/{id}")
+    //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access need to add {id} to end of this Post rout ex: createResume/{id}
+//    Most be Post Mapping to get id
+
+    //Get mapping displays html form properly with dataloader entries
+    @GetMapping("/createResume")
     public String createResume(HttpServletRequest request,Model model){
 
 //
