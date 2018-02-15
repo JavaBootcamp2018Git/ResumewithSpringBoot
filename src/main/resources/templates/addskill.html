@@ -14,7 +14,8 @@
     <div class="row body">
         <form th:action="@{/addSkill}" th:object="${skills}" method="post">
             <ul>
-
+                <!--Nesscary for Thymeleaf to see update id from controller and list buttons-->
+                <input type="hidden" th:field="*{id}" />
                 <li>
                     <p class="left">
                         <label for="skill">Skill</label>

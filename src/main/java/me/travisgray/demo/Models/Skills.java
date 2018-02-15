@@ -18,10 +18,7 @@ public class Skills {
 
     }
 
-    public Skills(String skill, String skillrating) {
-        this.skill = skill;
-        this.skillrating = skillrating;
-    }
+
     @ManyToMany(mappedBy = "skills")
     private Set<Resume>resumes;
 
@@ -34,6 +31,18 @@ public class Skills {
     @NotEmpty
     private String skillrating;
 
+    public Skills(String skill, String skillrating) {
+        this.skill = skill;
+        this.skillrating = skillrating;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getSkill() {
         return skill;

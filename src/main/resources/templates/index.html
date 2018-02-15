@@ -13,12 +13,9 @@
         <a th:href="@{/addSkill}" class="btn btn-transparent">Add Skill!</a>
         <a th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
         <a th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
+        <a th:href="@{/skillList}" class="btn btn-transparent">Show Skill List!</a>
         <p>After Typing in forms click here to see You completed Resume! </p>
         Links Don't use post
-        <a th:href="@{/createResume/{id}(id=${id})}" class="btn">Show resume</a>
-        <form th:action="@{/createResume/{id}(id=${resume.id})}" method="post">
-        <input type="submit" value="Show your Resume" class="btn btn-transparent"></input>
-        </form>
     </div>
 </header>
 

@@ -43,25 +43,23 @@ public class MainController {
 //    Find ID from resume the return to indexpage so that it see the id use path variable to make sure id is passed then return to index then whenn going to create reume route loop through
 //    Try this on on class to start then move into other collections
 
-    @RequestMapping("/")
-    public String showIndex(Model model) {
-//        model.addAttribute("getskills", skillsRepository.count());
-//        model.addAttribute("skilllist", skillsRepository.findAll());
-//        model.addAttribute("geteducation", educationRepository.count());
-//        model.addAttribute("educationlist", educationRepository.findAll());
-//        model.addAttribute("getexperince", experienceRepository.count());
-//        model.addAttribute("experincelist", experienceRepository.findAll());
-//        model.addAttribute("resume", resumeRepository.count());
-        model.addAttribute("resumelist", resumeRepository.findAll());
+    @RequestMapping("/indexwithresume")
+    public String showIndex(@ModelAttribute("resume") Resume resume,Model model) {
+        model.addAttribute("resume", resumeRepository.findAll());
         return "index";
 
+    }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
     }
 
 
 
     //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@Valid Resume resume, BindingResult result) {
+    public String saveResume(@Valid @ModelAttribute("resume") Resume resume,Model model, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "addresume";
@@ -70,7 +68,8 @@ public class MainController {
             }
 
             resumeRepository.save(resume);
-            return "redirect:/";
+            model.addAttribute("resumelist",resumeRepository.findAll());
+            return "redirect:/indexwithresume";
         }
     }
 
@@ -80,9 +79,10 @@ public class MainController {
         model.addAttribute("skills", new Skills());
         return "addskill";
     }
-
+//Must pass model attribute for thyemleaf to see object for update buttons example in html code <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/{id}(id=${skills.id})}" target="_self">
+//</a></p>
     @PostMapping("/addSkill")
-    public String saveSkill(@Valid Skills skill, BindingResult result) {
+    public String saveSkill(@Valid @ModelAttribute("skills") Skills skill,Model model, BindingResult result) {
 
         {
             if (result.hasErrors()) {
@@ -90,9 +90,49 @@ public class MainController {
             }
 
             skillsRepository.save(skill);
-            return "redirect:/";
+            model.addAttribute("skilllist",skillsRepository.findAll());
+            return "skill.list";
         }
     }
+
+
+//Updating id for skillslist Testing
+//    Passing id from prevously created skills
+
+    @GetMapping("/detail/{id}")
+    public String showSkills(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all skills including new user skill
+        model.addAttribute("skilllist", skillsRepository.findAll());
+
+        return "skill.list";
+    }
+
+
+    @GetMapping("/update/{id}")
+    public String updateSkills(@PathVariable("id") long id, Model model) {
+        model.addAttribute("skills", skillsRepository.findOne(id));
+        return "addskill";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteSkills(@PathVariable("id") long id, Model model) {
+        model.addAttribute("skills", skillsRepository.findOne(id));
+        skillsRepository.delete(id);
+        return "skill.list";
+    }
+
+
+    @GetMapping("/skillList")
+    public String showskilllist(Model model){
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        return "skill.list";
+    }
+
+
+
+
+
 
     @GetMapping("/addEducation")
     public String addEducation(Model model) {
