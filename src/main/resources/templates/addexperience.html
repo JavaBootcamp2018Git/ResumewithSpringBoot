@@ -14,7 +14,7 @@
     <div class="row body">
         <form th:action="@{/addExperience}" th:object="${experience}" method="post">
             <ul>
-
+                <input type="hidden" th:field="*{id}" />
                 <li>
                     <p class="left">
                         <label for="Company_Title">Company Title</label>

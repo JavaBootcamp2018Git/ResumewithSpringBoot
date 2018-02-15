@@ -192,33 +192,6 @@ public class MainController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("/addExperience")
     public String addExperience(Model model) {
         Experience experience = new Experience();
@@ -227,7 +200,7 @@ public class MainController {
     }
 
     @PostMapping("/addExperience")
-    public String saveExperience(@Valid Experience experience, BindingResult result) {
+    public String saveExperience(@Valid @ModelAttribute("experince") Experience experience,Model model, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "addexperience";
@@ -235,9 +208,32 @@ public class MainController {
         }
 
         experienceRepository.save(experience);
+        model.addAttribute("experiencelist",experienceRepository.findAll());
         System.out.println(experienceRepository.toString());
         System.out.println(experience.getJobtitle()+experience.getCompanytitle()+experience.getJobtitle()+experience.getStartDate()+experience.getEndDate());
-        return "redirect:/";
+        return "experience.list";
+    }
+
+    @GetMapping("/update/experience/{id}")
+    public String updateExperience(@PathVariable("id") long id, Model model) {
+        model.addAttribute("experience",experienceRepository.findOne(id));
+        return "addexperience";
+    }
+
+    @GetMapping("/delete/experience/{id}")
+    public String deleteExperience(@PathVariable("id") long id, Model model) {
+        model.addAttribute("experience",experienceRepository.findOne(id));
+        experienceRepository.delete(id);
+        return "experience.list";
+    }
+
+
+    @GetMapping("/detail/experience/{id}")
+    public String showExperience(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all educations including new user education
+        model.addAttribute("experiencelist",experienceRepository.findAll());
+        return "experience.list";
     }
 
 //passing all models to method to for thymeleaf access
