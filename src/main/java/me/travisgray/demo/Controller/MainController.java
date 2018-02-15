@@ -230,7 +230,7 @@ public class MainController {
 
     @GetMapping("/detail/experience/{id}")
     public String showExperience(@PathVariable("id") long id, Model model) {
-
+//        Test to see if route fined all educations including new user education
 //        Test to see if route fined all educations including new user education
         model.addAttribute("experiencelist",experienceRepository.findAll());
         return "experience.list";
