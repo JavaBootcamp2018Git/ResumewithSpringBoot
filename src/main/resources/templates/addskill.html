@@ -15,6 +15,9 @@
         <form th:action="@{/addSkill}" th:object="${skills}" method="post">
             <ul>
                 <!--Nesscary for Thymeleaf to see update id from controller and list buttons-->
+                <!--Prevents java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name 'id' available as request attribute
+	at org.springframework.web.servlet.support.BindStatus.<init>(BindStatus.java:144) ~[spring-webmvc-4.3.13.RELEASE.jar:4.3.13.RELEASE]
+-->
                 <input type="hidden" th:field="*{id}" />
                 <li>
                     <p class="left">

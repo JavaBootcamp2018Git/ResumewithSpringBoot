@@ -99,7 +99,7 @@ public class MainController {
 //Updating id for skillslist Testing
 //    Passing id from prevously created skills
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/detail/skill/{id}")
     public String showSkills(@PathVariable("id") long id, Model model) {
 
 //        Test to see if route fined all skills including new user skill
@@ -109,13 +109,13 @@ public class MainController {
     }
 
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/update/skill/{id}")
     public String updateSkills(@PathVariable("id") long id, Model model) {
         model.addAttribute("skills", skillsRepository.findOne(id));
         return "addskill";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/delete/skill/{id}")
     public String deleteSkills(@PathVariable("id") long id, Model model) {
         model.addAttribute("skills", skillsRepository.findOne(id));
         skillsRepository.delete(id);
@@ -134,6 +134,7 @@ public class MainController {
 
 
 
+
     @GetMapping("/addEducation")
     public String addEducation(Model model) {
         Education education = new Education();
@@ -142,7 +143,7 @@ public class MainController {
     }
 
     @PostMapping("/addEducation")
-    public String saveEducation(@Valid Education education, BindingResult result) {
+    public String saveEducation(@Valid @ModelAttribute("education") Education education,Model model, BindingResult result) {
 
         {
             if (result.hasErrors()) {
@@ -152,11 +153,71 @@ public class MainController {
             }
 
             educationRepository.save(education);
+            model.addAttribute("educationlist",educationRepository.findAll());
             System.out.println(educationRepository.toString());
             System.out.println(education.getGradyear()+education.getDegree()+education.getMajor()+education.getUniversity()+education.getId());
-            return "redirect:/";
+            return "education.list";
         }
     }
+
+
+
+    @GetMapping("/update/education/{id}")
+    public String updateEducation(@PathVariable("id") long id, Model model) {
+        model.addAttribute("education",educationRepository.findOne(id));
+        return "addeducation";
+    }
+
+    @GetMapping("/delete/education/{id}")
+    public String deleteEducation(@PathVariable("id") long id, Model model) {
+        model.addAttribute("education",educationRepository.findOne(id));
+        educationRepository.delete(id);
+        return "education.list";
+    }
+
+
+    @GetMapping("/detail/education/{id}")
+    public String showEducations(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all educations including new user education
+        model.addAttribute("educationlist",educationRepository.findAll());
+        return "education.list";
+    }
+
+    @GetMapping("/eduList")
+    public String showEducationlist(Model model){
+        model.addAttribute("educationlist",educationRepository.findAll());
+        return "education.list";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/addExperience")
     public String addExperience(Model model) {

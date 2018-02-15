@@ -41,24 +41,28 @@
 </div>
 <table>
     <tr>
-        <th>Skill</th>
-        <th>Skill Rating</th>
+        <th>Degree</th>
+        <th>Major</th>
+        <th>University</th>
+        <th>GradYear</th>
     </tr>
 
-    <tr th:each="skill : ${skilllist}">
-        <td th:text="${skill.skill}"></td>
-        <td th:text="${skill.skillrating}"></td>
+    <tr th:each="education : ${educationlist}">
+        <td th:text="${education.degree}"></td>
+        <td th:text="${education.major}"></td>
+        <td th:text="${education.university}"></td>
+        <td th:text="${education.gradyear}"></td>
         <td>
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/skill/{id}(id=${skills.id})}" target="_self">
-                Change Skill
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/education/{id}(id=${education.id})}" target="_self">
+                Change Education Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/skill/{id}(id=${skills.id})}" target="_self">
-                See All Skills
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/education/{id}(id=${education.id})}" target="_self">
+                See All Education Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/skill/{id}(id=${skills.id})}" target="_self">
-                Remove this Skill
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/education/{id}(id=${education.id})}" target="_self">
+                Remove Education Entries
             </a></p>
         </td>
     </tr>
