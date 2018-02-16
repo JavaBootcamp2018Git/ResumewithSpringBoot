@@ -42,6 +42,7 @@ public class SSUserDetailsService implements UserDetailsService {
 //                    Return this withUser("user").password("password").authorities("USER").
 //                    Dataloader for Spring Security see line in user1.setRoles(Arrays.asList(userRole)); in DataLoader Class
                     user.getUsername(), user.getPassword(), getAuthorities(user));
+
         }
         catch (Exception e) {
             throw new UsernameNotFoundException("User not found");

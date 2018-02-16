@@ -32,7 +32,6 @@ public class User {
     private String username;
 
 
-//use Fetch Type Eager user all data will be avivalible for this object
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
     inverseJoinColumns = @JoinColumn(name="role_id"))

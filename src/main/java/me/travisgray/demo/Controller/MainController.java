@@ -60,7 +60,25 @@ public class MainController {
     }
 
 
+    @GetMapping("/adminregister")
+    public String showadminRegistrationPage(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
+    }
 
+    @PostMapping("/adminregister")
+    public String processadminregistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model ){
+
+        model.addAttribute("user",user);
+        if(result.hasErrors()){
+            return "registration";
+        }else{
+            //                Only Admins can register other admin users no button access in nav bar
+            userService.saveAdmin(user);
+            model.addAttribute("message","Admin Account Successfully Created");
+        }
+        return "index";
+    }
 
 
 

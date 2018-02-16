@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
@@ -23,26 +24,26 @@
             <a class="nav-link" th:href="@{/register}">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/addEducation}">Add Education!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addEducation}">Add Education!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/addExperience}" >Add Experience!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}" >Add Experience!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/addSkill}">Add Skill!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}">Add Skill!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/addResume}">Add Resume Profile!</a>
+            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addResume}">Add Resume Profile!</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Edit Information List
             </a>
             <div class="dropdown-menu">
-            <a class="dropdown-item"th:href="@{/resumeList}">Show Resume Profile List!</a>
-            <a class="dropdown-item" th:href="@{/skillList}">Show Skill List!</a>
-            <a class="dropdown-item" th:href="@{/eduList}">Show Education List</a>
-            <a class="dropdown-item" th:href="@{/expList}">Show Experience List</a>
+            <a class="dropdown-item"sec:authorize="hasAuthority('USER')" th:href="@{/resumeList}">Show Resume Profile List!</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/skillList}">Show Skill List!</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/eduList}">Show Education List</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/expList}">Show Experience List</a>
             </div>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -63,11 +64,11 @@
 <header class="bg-image" th:fragment="navbuttons">
     <div class="container">
         <h1>Resume Maker Pro</h1>
-        <a th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
-        <a th:href="@{/addCover}" class="btn btn-transparent">Create Cover Letter</a>
-        <a th:href="@{/addSkill}" class="btn btn-transparent">Add Skill!</a>
-        <a th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
-        <a th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addCover}" class="btn btn-transparent">Create Cover Letter</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}" class="btn btn-transparent" >Add Skill!</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
         <a class="btn btn-transparent" th:href="@{/createResume}">Show Resume</a>
         <a class="btn btn-transparent" th:href="@{/createcoverletter}">Show Cover Letter</a>
         <a class="btn btn-transparent" th:href="@{/register}">Register</a>

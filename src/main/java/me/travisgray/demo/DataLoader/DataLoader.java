@@ -32,21 +32,23 @@ public class DataLoader implements CommandLineRunner{
 
     @Override
     public void run(String...strings)throws Exception{
-        Resume resume = new Resume("Travis","Gray","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg","t123@gmail.com");
-        resumeRepository.save(resume);
 
-        Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
-        skillsRepository.save(skills1);
-
-
-        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State University","Graduation: 2015");
-        educationRepository.save(education1);
-
-
-
-        Experience experience2 = new Experience("Marketing Consultant","Seaton Real Esate","Jan 2010","May 2013","Marketing and Sales");
-        experienceRepository.save(experience2);
-        System.out.println(experience2.getJobtitle());
+//        DataLoader Resume Test for View
+//        Resume resume = new Resume("Travis","Gray","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg","t123@gmail.com");
+//        resumeRepository.save(resume);
+//
+//        Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
+//        skillsRepository.save(skills1);
+//
+//
+//        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State University","Graduation: 2015");
+//        educationRepository.save(education1);
+//
+//
+//
+//        Experience experience2 = new Experience("Marketing Consultant","Seaton Real Esate","Jan 2010","May 2013","Marketing and Sales");
+//        experienceRepository.save(experience2);
+//        System.out.println(experience2.getJobtitle());
 
 
 
