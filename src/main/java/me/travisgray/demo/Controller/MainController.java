@@ -2,6 +2,7 @@ package me.travisgray.demo.Controller;
 
 import me.travisgray.demo.Models.*;
 import me.travisgray.demo.Repositories.*;
+import me.travisgray.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,46 @@ public class MainController {
 
     @Autowired
     CoverLetterRepo coverLetterRepo;
+
+    @Autowired
+    UserService userService;
+
+
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String showRegistrationPage(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
+    }
+
+    @PostMapping("/register")
+    public String processregistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model ){
+
+        model.addAttribute("user",user);
+        if(result.hasErrors()){
+            return "registration";
+        }else{
+            userService.saveUser(user);
+            model.addAttribute("message","User Account Successfully Created");
+        }
+        return "index";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/addResume")
     public String addResume(Model model) {
