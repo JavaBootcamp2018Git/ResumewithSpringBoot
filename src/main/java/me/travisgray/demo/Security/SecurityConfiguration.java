@@ -85,14 +85,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
-                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/resumeList","/addResume","/addCover").permitAll()
-
-
-
-
+                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume").permitAll()
 //                .access("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
-                .antMatchers("/createcoverletter","/createResume").access("hasAuthority('ADMIN')")
-                .antMatchers("/createcoverletter","/createResume","/delete/**","/update/**").access("hasAuthority('USER')")
+                .antMatchers().access("hasAuthority('ADMIN')")
+                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

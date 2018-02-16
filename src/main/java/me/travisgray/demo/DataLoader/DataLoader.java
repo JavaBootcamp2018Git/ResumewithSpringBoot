@@ -1,16 +1,12 @@
 package me.travisgray.demo.DataLoader;
 
-import me.travisgray.demo.Models.Education;
-import me.travisgray.demo.Models.Experience;
-import me.travisgray.demo.Models.Resume;
-import me.travisgray.demo.Models.Skills;
-import me.travisgray.demo.Repositories.EducationRepository;
-import me.travisgray.demo.Repositories.ExperienceRepository;
-import me.travisgray.demo.Repositories.ResumeRepository;
-import me.travisgray.demo.Repositories.SkillsRepository;
+import me.travisgray.demo.Models.*;
+import me.travisgray.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 @Component
 public class DataLoader implements CommandLineRunner{
@@ -26,6 +22,12 @@ public class DataLoader implements CommandLineRunner{
 
     @Autowired
     ResumeRepository resumeRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
 
     @Override
@@ -48,11 +50,40 @@ public class DataLoader implements CommandLineRunner{
 
 
 
-        resume.addSkills(skills1);
-        resume.addEducation(education1);
-        resume.addExperience(experience2);
-        resumeRepository.save(resume);
+//        resume.addSkills(skills1);
+//        resume.addEducation(education1);
+//        resume.addExperience(experience2);
+//        resumeRepository.save(resume);
 
+//        Security Testing
+
+        System.out.println("Loading data...");
+
+        roleRepository.save(new Role("USER"));
+        roleRepository.save(new Role("ADMIN"));
+
+        Role adminRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByRole("USER");
+
+        // Add user roles
+        User user1 = new User("bob@burger.com", "password", "Bobby", "Burger", true, "bob");
+        user1.setRoles(Arrays.asList(userRole));
+        userRepository.save(user1);
+
+
+
+        User user2 = new User("jane@virgin.com", "password", "Jane", "Virgin", true, "jane");
+        user2.setRoles(Arrays.asList(userRole));
+        userRepository.save(user2);
+
+        // Add admin roles
+        User user3 = new User("admin@secure.com", "password", "Admin", "User", true, "admin");
+        user3.setRoles(Arrays.asList(adminRole));
+        userRepository.save(user3);
+
+        User user4 = new User("clark@kent.com", "password", "Clark", "Kent", true, "clark");
+        user4.setRoles(Arrays.asList(userRole, adminRole));
+        userRepository.save(user4);
 
     }
 }
