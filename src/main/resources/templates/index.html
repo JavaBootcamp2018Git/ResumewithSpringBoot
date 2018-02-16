@@ -3,9 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Title</title>
+    <link rel="stylesheet" href="css/navbarstyle.css">
 </head>
 <body>
+<div class="row" th:fragement="navbar">
+<div class="container-fluid">
+<nav class="navbar navbar-expand-sm bg-success navbar-dark bg-primary">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Active</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/skillList}">Show Skill List!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/addEducation}">Add Education!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/addExperience}" >Add Experience!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/addSkill}">Add Skill!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" th:href="@{/skillList}">Show Skills List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/eduList}">Show Education List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/expList}">Show Experience List</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Resume Services
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Show Resume</a>
+                <a class="dropdown-item" href="#">Show Cover Letter</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+</div>
+</div>
+
+
+
 <header class="bg-image">
     <div class="container">
         <h1>Resume Maker Pro</h1>
@@ -114,5 +166,10 @@
         <p>&copy; 2018 Resume Maker Pro. All rights reserved.</p>
     </div>
 </footer>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

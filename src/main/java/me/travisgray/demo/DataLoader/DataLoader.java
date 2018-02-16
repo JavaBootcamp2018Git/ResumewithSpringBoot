@@ -30,7 +30,8 @@ public class DataLoader implements CommandLineRunner{
 
     @Override
     public void run(String...strings)throws Exception{
-        Resume resume = new Resume("Travis","Gray","traviosgray1@gmail.com");
+        Resume resume = new Resume("Travis","Gray","bob the builder","Experince with Real Estate Development and Construction materials","t123@gmail.com");
+        resumeRepository.save(resume);
 
         Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
         skillsRepository.save(skills1);
@@ -47,10 +48,10 @@ public class DataLoader implements CommandLineRunner{
 
 
 
-        resume.addSkills(skills1);
-        resume.addEducation(education1);
-        resume.addExperience(experience2);
-        resumeRepository.save(resume);
+//        resume.addSkills(skills1);
+//        resume.addEducation(education1);
+//        resume.addExperience(experience2);
+//        resumeRepository.save(resume);
 
 
     }

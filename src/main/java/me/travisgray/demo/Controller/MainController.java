@@ -43,12 +43,12 @@ public class MainController {
 //    Find ID from resume the return to indexpage so that it see the id use path variable to make sure id is passed then return to index then whenn going to create reume route loop through
 //    Try this on on class to start then move into other collections
 
-    @RequestMapping("/indexwithresume")
-    public String showIndex(@ModelAttribute("resume") Resume resume,Model model) {
-        model.addAttribute("resume", resumeRepository.findAll());
-        return "index";
-
-    }
+//    @RequestMapping("/indexwithresume")
+//    public String showIndex(@ModelAttribute("resume") Resume resume,Model model) {
+//        model.addAttribute("resume", resumeRepository.findAll());
+//        return "index";
+//
+//    }
 
     @RequestMapping("/")
     public String index(){
@@ -69,7 +69,7 @@ public class MainController {
 
             resumeRepository.save(resume);
             model.addAttribute("resumelist",resumeRepository.findAll());
-            return "redirect:/indexwithresume";
+            return "resume.list";
         }
     }
 
@@ -235,6 +235,13 @@ public class MainController {
         model.addAttribute("experiencelist",experienceRepository.findAll());
         return "experience.list";
     }
+
+    @GetMapping("/expList")
+    public String showExperiencelist(Model model){
+        model.addAttribute("experiencelist",experienceRepository.findAll());
+        return "experience.list";
+    }
+
 
 //passing all models to method to for thymeleaf access
     //Passing in all models and finding id of resume then adding that model back into Thymeleaf for template access need to add {id} to end of this Post rout ex: createResume/{id}

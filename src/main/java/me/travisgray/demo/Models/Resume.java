@@ -21,6 +21,13 @@ public class Resume {
     @NotNull
     @NotEmpty
     private String lastname;
+    @NotNull
+    @NotEmpty
+    private String references;
+
+    @NotNull
+    @NotEmpty
+    private String summary;
 
     @NotNull
     @NotEmpty
@@ -46,13 +53,28 @@ public class Resume {
 
     }
 
-    public Resume(String firstname, String lastname, String email) {
-        this.skills = new HashSet<Skills>();
-        this.educations = new HashSet<Education>();
-        this.experiences = new HashSet<Experience>();
+    public Resume(String firstname, String lastname, String references, String summary, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.references = references;
+        this.summary = summary;
         this.email = email;
+    }
+
+    public String getReferences() {
+        return references;
+    }
+
+    public void setReferences(String references) {
+        this.references = references;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     public long getId() {
