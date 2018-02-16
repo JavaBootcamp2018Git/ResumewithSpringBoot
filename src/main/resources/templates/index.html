@@ -11,12 +11,13 @@
 <div class="row" th:fragement="navbar">
 <div class="container-fluid">
 <nav class="navbar navbar-expand-sm bg-success navbar-dark bg-primary">
+    <img class="navbar-brand navbarlogodetails" src="http://store.storeimages.cdn-apple.com/4044/as-images.apple.com/is/image/AppleInc/aos/published/images/H/D1/HD162/HD162?wid=800&hei=800&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1400749861094"  alt="logo">
     <ul class="navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="#">Active</a>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/login}">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/skillList}">Show Skill List!</a>
+            <a class="nav-link" th:href="@{/logout}">Logout</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" th:href="@{/addEducation}">Add Education!</a>
@@ -28,27 +29,25 @@
             <a class="nav-link" th:href="@{/addSkill}">Add Skill!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}">Login</a>
+            <a class="nav-link" th:href="@{/addResume}">Add Resume Profile!</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" th:href="@{/skillList}">Show Skills List</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/eduList}">Show Education List</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/expList}">Show Experience List</a>
-        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Edit Information List
+            </a>
+            <div class="dropdown-menu">
+            <a class="dropdown-item"th:href="@{/resumeList}">Show Resume Profile List!</a>
+            <a class="dropdown-item" th:href="@{/skillList}">Show Skill List!</a>
+            <a class="dropdown-item" th:href="@{/eduList}">Show Education List</a>
+            <a class="dropdown-item" th:href="@{/expList}">Show Experience List</a>
+            </div>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Resume Services
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Show Resume</a>
-                <a class="dropdown-item" href="#">Show Cover Letter</a>
+                <a class="dropdown-item" th:href="@{/createResume}">Show Resume</a>
+                <a class="dropdown-item" th:href="@{/createcoverletter}">Show Cover Letter</a>
             </div>
         </li>
     </ul>
@@ -58,16 +57,16 @@
 
 
 
-<header class="bg-image">
+<header class="bg-image" th:fragment="navbuttons">
     <div class="container">
         <h1>Resume Maker Pro</h1>
         <a th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
+        <a th:href="@{/addCover}" class="btn btn-transparent">Create Cover Letter</a>
         <a th:href="@{/addSkill}" class="btn btn-transparent">Add Skill!</a>
         <a th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
         <a th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
-        <a th:href="@{/skillList}" class="btn btn-transparent">Show Skill List!</a>
-        <p>After Typing in forms click here to see You completed Resume! </p>
-        Links Don't use post
+        <a class="btn btn-transparent" th:href="@{/createResume}">Show Resume</a>
+        <a class="btn btn-transparent" th:href="@{/createcoverletter}">Show Cover Letter</a>
     </div>
 </header>
 

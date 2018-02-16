@@ -7,12 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/tablestyle.css">
     <link rel="stylesheet" href="css/navbarstyle.css">
-    <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
 </head>
 <body>
 <div th:replace="index :: navbar"></div>
-<header th:replace="index :: navbuttons"></header>
-
 
 <!--<div class="row">-->
 <!--<div class="container-fluid">-->
@@ -45,35 +42,14 @@
 <!--</nav>-->
 <!--</div>-->
 <!--</div>-->
-<h2>Resume Profile Information</h2>
+<h2>Cover Letter</h2>
 <table>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>References</th>
-        <th>Summary</th>
-        <th>Image</th>
+        <th>Cover Letter</th>
     </tr>
 
-    <tr th:each="resume : ${resumelist}">
-        <td th:text="${resume.firstname}"></td>
-        <td th:text="${resume.lastname}"></td>
-        <td th:text="${resume.references}"></td>
-        <td th:text="${resume.summary}"></td>
-        <td><img th:src="${resume.image}" style="height: 200px"></td>
-        <td>
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/resume/{id}(id=${resume.id})}" target="_self">
-                Change Resume profile
-            </a></p>
-
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/resume/{id}(id=${resume.id})}" target="_self">
-                See All Resume profile
-            </a></p>
-
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/resume/{id}(id=${resume.id})}" target="_self">
-                Remove Resume profile
-            </a></p>
-        </td>
+    <tr th:each="cover : ${coverletterlist}">
+        <td th:text="${cover.paragraph}"></td>
     </tr>
 </table>
 

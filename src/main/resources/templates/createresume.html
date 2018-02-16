@@ -1,188 +1,188 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Resume</title>
-    <link rel = "stylesheet" type = "text/css" href = "css/createresumestyles.css"></link>
-    <script type="text/javascript" src="js/createresume.js"></script>
-</head>
-<body>
-<div th:replace="index :: navbar"></div>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<div class="resume-wrapper">
-    <section class="profile section-padding">
-        <div class="container">
-            <div class="picture-resume-wrapper">
-                <div class="picture-resume">
-                    <span><img src="../templates/images/travisprofilepic.jpg" alt="" /></span>
-                    <svg version="1.1" viewBox="0 0 350 350">
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Create Resume</title>-->
+    <!--<link rel = "stylesheet" type = "text/css" href = "css/createresumestyles.css"></link>-->
+    <!--<script type="text/javascript" src="js/createresume.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;<div th:replace="index :: navbar"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="resume-wrapper">&ndash;&gt;-->
+    <!--&lt;!&ndash;<section class="profile section-padding">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="picture-resume-wrapper">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="picture-resume">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<span><img src="../templates/images/travisprofilepic.jpg" alt="" /></span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<svg version="1.1" viewBox="0 0 350 350">&ndash;&gt;-->
 
-                        <defs>
-                            <filter id="goo">
-                                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-                                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />
-                            </filter>
-                        </defs>
-
-
-                        <g filter="url(#goo)" >
-
-                            <circle id="main_circle" class="st0" cx="171.5" cy="175.6" r="130"/>
-
-                            <circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble2 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble3 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble4 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble5 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble6 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble7 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble8 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble9 st1" cx="171.5" cy="175.6" r="122.7"/>
-                            <circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6" r="122.7"/>
-
-                        </g>
-                    </svg>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="name-wrapper">
-                <h1>Travis <br/>Gray</h1>
-                <!-- YOUR NAME AND LAST NAME  -->
-            </div>
-            <div class="clearfix"></div>
-            <div class="contact-info clearfix">
-                <ul class="list-titles">
-                    <li>Call</li>
-                    <li>Mail</li>
-                    <li>Web</li>
-                    <li>Home</li>
-                </ul>
-                <ul class="list-content ">
-                    <li>202-345-2079</li>
-                    <!-- YOUR PHONE NUMBER  -->
-                    <li>travisogray1@gmail.com</li>
-                    <!-- YOUR EMAIL -->
-                    <li><a href="#">Linkedin.com</a></li>
-                    <!-- YOUR WEBSITE  -->
-                    <li>Frederick, MD</li>
-                    <!-- YOUR STATE AND COUNTRY  -->
-                </ul>
-            </div>
-            <div class="contact-presentation">
-                <!-- YOUR PRESENTATION RESUME  -->
-                <p><span class="bold">Lorem</span> ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus. </p>
-            </div>
-            <div class="contact-social clearfix">
-                <ul class="list-titles">
-                    <li>Twitter</li>
-                    <li>Dribbble</li>
-                    <li>Codepen</li>
-                </ul>
-                <ul class="list-content">
-                    <!-- REMEMBER TO PUT THE URL ON THE HREF TAG  -->
-                    <li><a href="">@TravisGray</a></li>
-                    <!-- YOUR TWITTER USER  -->
-                    <li><a href="">Travis</a></li>
-                    <!-- YOUR DRIBBBLE USER  -->
-                    <li><a href="">Travis</a></li>
-                    <!-- YOUR BEHANCE USER  -->
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="experience section-padding">
-        <div class="container">
-            <h3 class="experience-title">Experience</h3>
-
-            <div class="experience-wrapper">
-                <div class="company-wrapper clearfix">
-                    <div class="experience-title" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.companytitle}"></span></div>
-                    <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-                    <div class="time" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.startDate}"></span><span></span><span th:text="${eachexperience.endDate}"></span></div>
-                    <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-                </div>
-                <div class="job-wrapper clearfix">
-                    <div class="experience-title" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.jobtitle}"></span></div>
-                    <!-- JOB TITLE  -->
-                    <div class="company-description">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
-                        <!-- JOB DESCRIPTION  -->
-                    </div>
-                </div>
-
-                <h3 class="experience-title">Education</h3>
-
-                <div class="experience-wrapper">
-                    <div class="company-wrapper clearfix">
-                        <div class="experience-title" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.degree}"></span></div>
-                        <!-- NAME OF THE COMPANY YOUWORK WITH  -->
-                        <div class="time" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.major}"></span><span></span></div>
-                        <!-- THE TIME YOU WORK WITH THE COMPANY  -->
-                    </div>
-                    <div class="job-wrapper clearfix">
-                        <div class="experience-title" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.university}"></span></div>
-                        <!-- JOB TITLE  -->
-                        <div class="company-description" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.gradyear}">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
-                            <!-- JOB DESCRIPTION  -->
-                        </div>
-                    </div>
-                </div>
+                        <!--&lt;!&ndash;<defs>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<filter id="goo">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />&ndash;&gt;-->
+                                <!--&lt;!&ndash;<feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -9" result="cm" />&ndash;&gt;-->
+                            <!--&lt;!&ndash;</filter>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</defs>&ndash;&gt;-->
 
 
-                <!--<div class="company-wrapper clearfix">-->
-                    <!--<div class="experience-title">Company name</div>-->
-                    <!--&lt;!&ndash; NAME OF THE COMPANY YOUWORK WITH  &ndash;&gt;-->
-                    <!--<div class="time" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.startDate} + ${eachexperience.endDate}"></span></div>-->
-                    <!--&lt;!&ndash; THE TIME YOU WORK WITH THE COMPANY  &ndash;&gt;-->
-                <!--</div>-->
-                <!---->
+                        <!--&lt;!&ndash;<g filter="url(#goo)" >&ndash;&gt;-->
 
-                <!--<div class="job-wrapper clearfix">-->
-                    <!--<div class="experience-title">Web Designer </div>-->
-                    <!--&lt;!&ndash; JOB TITLE  &ndash;&gt;-->
-                    <!--<div class="company-description">-->
-                        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>-->
-                        <!--&lt;!&ndash; JOB DESCRIPTION  &ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
+                            <!--&lt;!&ndash;<circle id="main_circle" class="st0" cx="171.5" cy="175.6" r="130"/>&ndash;&gt;-->
 
-            </div>
-            <!--Skill experience-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble0 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble1 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble2 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble3 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble4 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble5 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble6 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble7 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble8 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble9 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<circle id="circle" class="bubble10 st1" cx="171.5" cy="175.6" r="122.7"/>&ndash;&gt;-->
 
-            <div class="section-wrapper clearfix">
-                <h3 class="section-title">Skills</h3>
-                <!-- YOUR SET OF SKILLS  -->
-                <ul>
-                    <li class="skill-percentage" th:each="eachskill : ${resume.skills}"><span th:text="${eachskill.skill}"></span></span></li>
-                    <li class="skill-percentage" th:each="eachskill : ${resume.skills}"><span th:text="${eachskill.skillrating}"></span></li>
-                    <li class="skill-percentage">Javascript</li>
-                    <li class="skill-percentage">Jquery</li>
-                    <li class="skill-percentage">Wordpress</li>
-                    <li class="skill-percentage">Photoshop</li>
+                        <!--&lt;!&ndash;</g>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</svg>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="name-wrapper">&ndash;&gt;-->
+                <!--&lt;!&ndash;<h1>Travis <br/>Gray</h1>&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash; YOUR NAME AND LAST NAME  &ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="contact-info clearfix">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="list-titles">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Call</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Mail</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Web</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Home</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="list-content ">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>202-345-2079</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR PHONE NUMBER  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>travisogray1@gmail.com</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR EMAIL &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="#">Linkedin.com</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR WEBSITE  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Frederick, MD</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR STATE AND COUNTRY  &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="contact-presentation">&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash; YOUR PRESENTATION RESUME  &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<p><span class="bold">Lorem</span> ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod congue nisi, nec consequat quam. In consectetur faucibus turpis eget laoreet. Sed nec imperdiet purus. </p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="contact-social clearfix">&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="list-titles">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Twitter</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Dribbble</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li>Codepen</li>&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul class="list-content">&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; REMEMBER TO PUT THE URL ON THE HREF TAG  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="">@TravisGray</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR TWITTER USER  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="">Travis</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR DRIBBBLE USER  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li><a href="">Travis</a></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; YOUR BEHANCE USER  &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</section>&ndash;&gt;-->
 
-                </ul>
+    <!--&lt;!&ndash;<section class="experience section-padding">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+            <!--&lt;!&ndash;<h3 class="experience-title">Experience</h3>&ndash;&gt;-->
 
-            </div>
+            <!--&lt;!&ndash;<div class="experience-wrapper">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="company-wrapper clearfix">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="experience-title" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.companytitle}"></span></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; NAME OF THE COMPANY YOUWORK WITH  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="time" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.startDate}"></span><span></span><span th:text="${eachexperience.endDate}"></span></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; THE TIME YOU WORK WITH THE COMPANY  &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="job-wrapper clearfix">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="experience-title" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.jobtitle}"></span></div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash; JOB TITLE  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="company-description">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash; JOB DESCRIPTION  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-            <div class="section-wrapper clearfix">
-                <h3 class="section-title">Hobbies</h3>
-                <!-- DESCRIPTION OF YOUR HOBBIES -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
+                <!--&lt;!&ndash;<h3 class="experience-title">Education</h3>&ndash;&gt;-->
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>
-            </div>
+                <!--&lt;!&ndash;<div class="experience-wrapper">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="company-wrapper clearfix">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="experience-title" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.degree}"></span></div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash; NAME OF THE COMPANY YOUWORK WITH  &ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="time" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.major}"></span><span></span></div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash; THE TIME YOU WORK WITH THE COMPANY  &ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<div class="job-wrapper clearfix">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="experience-title" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.university}"></span></div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash; JOB TITLE  &ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div class="company-description" th:each="eacheducation : ${resume.educations}"><span th:text="${eacheducation.gradyear}">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash; JOB DESCRIPTION  &ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-        </div>
-    </section>
 
-    <div class="clearfix"></div>
-</div>
+                <!--&lt;!&ndash;&lt;!&ndash;<div class="company-wrapper clearfix">&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<div class="experience-title">Company name</div>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; NAME OF THE COMPANY YOUWORK WITH  &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<div class="time" th:each="eachexperience : ${resume.experiences}"><span th:text="${eachexperience.startDate} + ${eachexperience.endDate}"></span></div>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; THE TIME YOU WORK WITH THE COMPANY  &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+                <!--&lt;!&ndash;&lt;!&ndash;<div class="job-wrapper clearfix">&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<div class="experience-title">Web Designer </div>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; JOB TITLE  &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<div class="company-description">&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash;<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash;&lt;!&ndash; JOB DESCRIPTION  &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;Skill experience&ndash;&gt;&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<div class="section-wrapper clearfix">&ndash;&gt;-->
+                <!--&lt;!&ndash;<h3 class="section-title">Skills</h3>&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash; YOUR SET OF SKILLS  &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage" th:each="eachskill : ${resume.skills}"><span th:text="${eachskill.skill}"></span></span></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage" th:each="eachskill : ${resume.skills}"><span th:text="${eachskill.skillrating}"></span></li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage">Javascript</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage">Jquery</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage">Wordpress</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<li class="skill-percentage">Photoshop</li>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<div class="section-wrapper clearfix">&ndash;&gt;-->
+                <!--&lt;!&ndash;<h3 class="section-title">Hobbies</h3>&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash; DESCRIPTION OF YOUR HOBBIES &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a elit facilisis, adipiscing leo in, dignissim magna.</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</section>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<div class="clearfix"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->

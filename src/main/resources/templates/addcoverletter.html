@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <h1>Resume Maker Pro Add Cover Letter &nbsp;</h1>
+        <h3>Fill out the form below to start creating your Cover Letter!</h3>
+    </div>
+    <div class="row body">
+        <form th:action="@{/addCover}" th:object="${coverletter}" method="post">
+            <ul>
+                <!--Nesscary for Thymeleaf to see update id from controller and list buttons-->
+                <!--Prevents java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name 'id' available as request attribute
+	at org.springframework.web.servlet.support.BindStatus.<init>(BindStatus.java:144) ~[spring-webmvc-4.3.13.RELEASE.jar:4.3.13.RELEASE]
+-->
+                <input type="hidden" th:field="*{id}" />
+
+                <li>
+                    <p class="left">
+                        <label for="Cover Letter Text">Cover Letter Paragraph</label>
+                        <input th:field="${coverletter.paragraph}" type="text" name="text" placeholder="Please Paste your Formated Cover Letter Here" /><span th:if="${#fields.hasErrors('paragraph')}" th:errors="*{paragraph}"></span>
+                    </p>
+                </li>
+
+
+                <li><div class="divider"></div></li>
+
+
+                <li>
+                    <input class="btn btn-submit" type="submit" value="Submit Cover Letter" th:href="@{/addCover}" />
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,13 +1,7 @@
 package me.travisgray.demo.Controller;
 
-import me.travisgray.demo.Models.Education;
-import me.travisgray.demo.Models.Experience;
-import me.travisgray.demo.Models.Resume;
-import me.travisgray.demo.Models.Skills;
-import me.travisgray.demo.Repositories.EducationRepository;
-import me.travisgray.demo.Repositories.ExperienceRepository;
-import me.travisgray.demo.Repositories.ResumeRepository;
-import me.travisgray.demo.Repositories.SkillsRepository;
+import me.travisgray.demo.Models.*;
+import me.travisgray.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class MainController {
@@ -31,6 +26,9 @@ public class MainController {
 
     @Autowired
     ResumeRepository resumeRepository;
+
+    @Autowired
+    CoverLetterRepo coverLetterRepo;
 
     @GetMapping("/addResume")
     public String addResume(Model model) {
@@ -55,6 +53,68 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/addCover")
+    public String createCoverLetter(Model model){
+        CoverLetter coverLetter = new CoverLetter();
+        model.addAttribute("coverletter",new CoverLetter());
+        return "addcoverletter";
+    }
+
+    @PostMapping("/addCover")
+    public String saveCoverLetter(@Valid @ModelAttribute("cover")CoverLetter coverLetter,Model model,BindingResult result){
+        {
+            if(result.hasErrors()){
+                return "addcoverletter";
+            }
+
+            coverLetterRepo.save(coverLetter);
+            model.addAttribute("coverletterlist",coverLetterRepo.findAll());
+            return "cover.letterlist";
+
+        }
+    }
+
+    @GetMapping("/createcoverletter")
+    public String showfinalcoverletter(Model model){
+        model.addAttribute("coverletterlist",coverLetterRepo.findAll());
+        return "finalcoverletter";
+
+    }
+
+    @GetMapping("/detail/cover/{id}")
+    public String showCoverLetterinfo(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all coverletter including new coverletter
+        model.addAttribute("coverletterlist",coverLetterRepo.findAll());
+
+        return "cover.letterlist";
+    }
+
+
+    @GetMapping("/update/cover/{id}")
+    public String updateCoverLetterinfo(@PathVariable("id") long id, Model model) {
+        model.addAttribute("cover", coverLetterRepo.findOne(id));
+        return "addcoverletter";
+    }
+
+    @GetMapping("/delete/cover/{id}")
+    public String deleteCoverLetterinfo(@PathVariable("id") long id, Model model) {
+        model.addAttribute("cover", coverLetterRepo.findOne(id));
+        coverLetterRepo.delete(id);
+        return "cover.letterlist";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
@@ -72,6 +132,45 @@ public class MainController {
             return "resume.list";
         }
     }
+
+
+
+    //Updating id for skillslist Testing
+//    Passing id from prevously created skills
+
+    @GetMapping("/detail/resume/{id}")
+    public String showResumeprofileinfo(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all resume including new resume
+        model.addAttribute("resumelist", resumeRepository.findAll());
+
+        return "resume.list";
+    }
+
+
+    @GetMapping("/update/resume/{id}")
+    public String updateResumeprofileinfo(@PathVariable("id") long id, Model model) {
+        model.addAttribute("resume", resumeRepository.findOne(id));
+        return "addresume";
+    }
+
+    @GetMapping("/delete/resume/{id}")
+    public String deleteResumeprofile(@PathVariable("id") long id, Model model) {
+        model.addAttribute("resume", resumeRepository.findOne(id));
+        resumeRepository.delete(id);
+        return "resume.list";
+    }
+
+    @GetMapping("/resumeList")
+    public String showresumelist(Model model){
+        model.addAttribute("resumelist",resumeRepository.findAll());
+        return "resume.list";
+    }
+
+
+
+
+
 
     @GetMapping("/addSkill")
     public String addSkill(Model model) {
@@ -122,9 +221,9 @@ public class MainController {
         return "skill.list";
     }
 
-
+//Get mapping throwing id errors thymeleaf fixed by passing in model of skills other routes working without model attribute Thymeleaf fix
     @GetMapping("/skillList")
-    public String showskilllist(Model model){
+    public String showskilllist(Model model ,@ModelAttribute("skills")Skills skills){
         model.addAttribute("skilllist",skillsRepository.findAll());
         return "skill.list";
     }
@@ -251,12 +350,22 @@ public class MainController {
     @GetMapping("/createResume")
     public String createResume(HttpServletRequest request,Model model){
 
-//
+        model.addAttribute("experiencelist",experienceRepository.findAll());
+        model.addAttribute("educationlist",educationRepository.findAll());
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        model.addAttribute("resumelist",resumeRepository.findAll());
+
+
+
+
+
+
+        //
 
 //        Binding a Model(Object Resumeid ) to parameter passed by button in "index" line 17 in header
 //        Saving resume model id from parameter to resume repo before adding model attribute
-        Resume resume = resumeRepository.findOne( new Long (request.getParameter("id")));
-        model.addAttribute("resume",resume);
+//        Resume resume = resumeRepository.findOne( new Long (request.getParameter("id")));
+//        model.addAttribute("resume",resume);
 
 
 
@@ -285,7 +394,7 @@ public class MainController {
 //        System.out.println("Print Resume experiences using String"+resume.getExperiences().toString());
 //        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
 //        //Adding Resume id to model
-        return "createresume";
+        return "createresume2";
 
 
     }

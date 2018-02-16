@@ -29,6 +29,8 @@ public class Resume {
     @NotEmpty
     private String summary;
 
+    private String image;
+
     @NotNull
     @NotEmpty
     private String email;
@@ -53,12 +55,21 @@ public class Resume {
 
     }
 
-    public Resume(String firstname, String lastname, String references, String summary, String email) {
+    public Resume(String firstname, String lastname, String references, String summary, String image, String email) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.references = references;
         this.summary = summary;
+        this.image = image;
         this.email = email;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getReferences() {

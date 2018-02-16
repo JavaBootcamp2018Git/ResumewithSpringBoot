@@ -2,3 +2,8 @@
 .bg-primary {
     background-color: #007bff !important;
 }
+
+.navbarlogodetails {
+    height: 100px;
+    width: 100px;
+}

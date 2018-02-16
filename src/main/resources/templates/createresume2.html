@@ -7,12 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/tablestyle.css">
     <link rel="stylesheet" href="css/navbarstyle.css">
-    <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
 </head>
 <body>
 <div th:replace="index :: navbar"></div>
-<header th:replace="index :: navbuttons"></header>
-
 
 <!--<div class="row">-->
 <!--<div class="container-fluid">-->
@@ -45,7 +42,7 @@
 <!--</nav>-->
 <!--</div>-->
 <!--</div>-->
-<h2>Resume Profile Information</h2>
+<h2>Resume Profile Info</h2>
 <table>
     <tr>
         <th>First Name</th>
@@ -61,22 +58,54 @@
         <td th:text="${resume.references}"></td>
         <td th:text="${resume.summary}"></td>
         <td><img th:src="${resume.image}" style="height: 200px"></td>
-        <td>
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/resume/{id}(id=${resume.id})}" target="_self">
-                Change Resume profile
-            </a></p>
-
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/resume/{id}(id=${resume.id})}" target="_self">
-                See All Resume profile
-            </a></p>
-
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/resume/{id}(id=${resume.id})}" target="_self">
-                Remove Resume profile
-            </a></p>
-        </td>
     </tr>
 </table>
+<h2>Educational Information</h2>
+<table>
+    <tr>
+        <th>Degree</th>
+        <th>Major</th>
+        <th>University</th>
+        <th>GradYear</th>
+    </tr>
 
+    <tr th:each="education : ${educationlist}">
+        <td th:text="${education.degree}"></td>
+        <td th:text="${education.major}"></td>
+        <td th:text="${education.university}"></td>
+        <td th:text="${education.gradyear}"></td>
+    </tr>
+</table>
+<h2>Experience Information</h2>
+<table>
+    <tr>
+        <th>Job Title</th>
+        <th>Company Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Duty List</th>
+    </tr>
+
+    <tr th:each="experience : ${experiencelist}">
+        <td th:text="${experience.jobtitle}"></td>
+        <td th:text="${experience.companytitle}"></td>
+        <td th:text="${experience.startDate}"></td>
+        <td th:text="${experience.endDate}"></td>
+        <td th:text="${experience.dutylist}"></td>
+    </tr>
+</table>
+<h2>Skill Information</h2>
+<table>
+    <tr>
+        <th>Skill</th>
+        <th>Skill Rating</th>
+    </tr>
+
+    <tr th:each="skill : ${skilllist}">
+        <td th:text="${skill.skill}"></td>
+        <td th:text="${skill.skillrating}"></td>
+    </tr>
+</table>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
