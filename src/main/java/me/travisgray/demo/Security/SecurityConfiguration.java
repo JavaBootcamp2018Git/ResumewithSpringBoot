@@ -86,7 +86,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
                 .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume").permitAll()
-//                .access("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
                 .antMatchers().access("hasAuthority('ADMIN')")
                 .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")
                 .anyRequest().authenticated()
@@ -123,8 +122,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
     throws Exception{
         auth.inMemoryAuthentication().
+//                Appliciants
         withUser("user").password("password").authorities("USER").
         and().
+//                Employers
         withUser("dave").password("begreat").authorities("ADMIN");
 
 //        Database Authentication must come after in memory authentication
