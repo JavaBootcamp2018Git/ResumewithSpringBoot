@@ -96,13 +96,12 @@ public class MainController {
 
     @GetMapping("/addCover")
     public String createCoverLetter(Model model){
-        CoverLetter coverLetter = new CoverLetter();
         model.addAttribute("coverletter",new CoverLetter());
         return "addcoverletter";
     }
 
     @PostMapping("/addCover")
-    public String saveCoverLetter(@Valid @ModelAttribute("cover")CoverLetter coverLetter,Model model,BindingResult result){
+    public String saveCoverLetter(@Valid @ModelAttribute("coverletter")CoverLetter coverLetter,Model model,BindingResult result){
         {
             if(result.hasErrors()){
                 return "addcoverletter";
@@ -110,10 +109,37 @@ public class MainController {
 
             coverLetterRepo.save(coverLetter);
             model.addAttribute("coverletterlist",coverLetterRepo.findAll());
-            return "cover.letterlist";
+            return "coverletter.list";
 
         }
     }
+
+
+
+    @GetMapping("/detail/coverletter/{id}")
+    public String showCoverLetterinfo(@PathVariable("id") long id, Model model) {
+
+//        Test to see if route fined all coverletter including new coverletter
+        model.addAttribute("coverletterlist",coverLetterRepo.findAll());
+
+        return "coverletter.list";
+    }
+
+
+    @GetMapping("/update/coverletter/{id}")
+    public String updateCoverLetterinfo(@PathVariable("id") long id, Model model) {
+        model.addAttribute("coverletter", coverLetterRepo.findOne(id));
+        return "addcoverletter";
+    }
+
+    @GetMapping("/delete/coverletter/{id}")
+    public String deleteCoverLetterinfo(@PathVariable("id") long id, Model model) {
+        model.addAttribute("coverletter", coverLetterRepo.findOne(id));
+        coverLetterRepo.delete(id);
+        return "coverletter.list";
+    }
+
+
 
     @GetMapping("/createcoverletter")
     public String showfinalcoverletter(Model model){
@@ -121,33 +147,6 @@ public class MainController {
         return "finalcoverletter";
 
     }
-
-    @GetMapping("/detail/cover/{id}")
-    public String showCoverLetterinfo(@PathVariable("id") long id, Model model) {
-
-//        Test to see if route fined all coverletter including new coverletter
-        model.addAttribute("coverletterlist",coverLetterRepo.findAll());
-
-        return "cover.letterlist";
-    }
-
-
-    @GetMapping("/update/cover/{id}")
-    public String updateCoverLetterinfo(@PathVariable("id") long id, Model model) {
-        model.addAttribute("cover", coverLetterRepo.findOne(id));
-        return "addcoverletter";
-    }
-
-    @GetMapping("/delete/cover/{id}")
-    public String deleteCoverLetterinfo(@PathVariable("id") long id, Model model) {
-        model.addAttribute("cover", coverLetterRepo.findOne(id));
-        coverLetterRepo.delete(id);
-        return "cover.letterlist";
-    }
-
-
-
-
 
 
 

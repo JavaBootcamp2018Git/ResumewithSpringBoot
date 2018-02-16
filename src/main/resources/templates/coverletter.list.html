@@ -54,15 +54,15 @@
     <tr th:each="cover : ${coverletterlist}">
         <td th:text="${cover.paragraph}"></td>
         <td>
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/coverletter/{id}(id=${cover.id})}" target="_self">
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/coverletter/{id}(id=${coverletter.id})}" target="_self">
                 Change Cover Letter Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/coverletter/{id}(id=${cover.id})}" target="_self">
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/coverletter/{id}(id=${coverletter.id})}" target="_self">
                 See All Cover Letter Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/coverletter/{id}(id=${cover.id})}" target="_self">
+            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/coverletter/{id}(id=${coverletter.id})}" target="_self">
                 Remove Cover Letter Entries
             </a></p>
         </td>
