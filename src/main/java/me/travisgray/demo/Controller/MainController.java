@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class MainController {
@@ -26,13 +25,31 @@ public class MainController {
     ExperienceRepository experienceRepository;
 
     @Autowired
-    ResumeRepository resumeRepository;
+    ProfileRepository profileRepository;
 
     @Autowired
     CoverLetterRepo coverLetterRepo;
 
     @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
     UserService userService;
+
+
+    @GetMapping("/findrolesdata")
+    public String createuserroles(){
+        Role jobseekerrole = new Role();
+        jobseekerrole.setRole("JOBSEEKER");
+        roleRepository.save(jobseekerrole);
+
+        Role recruiterrole = new Role();
+        recruiterrole.setRole("RECRUITER");
+        roleRepository.save(recruiterrole);
+
+        return "Redirect:/login";
+
+    }
 
 
     @RequestMapping("/login")
@@ -91,9 +108,9 @@ public class MainController {
 
     @GetMapping("/addResume")
     public String addResume(Model model) {
-        //Creating Resume model for new form
-        Resume resume = new Resume();
-        model.addAttribute("resume", new Resume());
+        //Creating Profile model for new form
+        Profile profile = new Profile();
+        model.addAttribute("resume", new Profile());
         return "addresume";
     }
 
@@ -101,8 +118,8 @@ public class MainController {
 //    Try this on on class to start then move into other collections
 
 //    @RequestMapping("/indexwithresume")
-//    public String showIndex(@ModelAttribute("resume") Resume resume,Model model) {
-//        model.addAttribute("resume", resumeRepository.findAll());
+//    public String showIndex(@ModelAttribute("resume") Profile resume,Model model) {
+//        model.addAttribute("resume", profileRepository.findAll());
 //        return "index";
 //
 //    }
@@ -175,9 +192,9 @@ public class MainController {
 
 
 
-    //Process and save Resume form Binding Result nesscary for Thymeleaf Valaidation
+    //Process and save Profile form Binding Result nesscary for Thymeleaf Valaidation
     @PostMapping("/addResume")
-    public String saveResume(@Valid @ModelAttribute("resume") Resume resume,Model model, BindingResult result) {
+    public String saveResume(@Valid @ModelAttribute("resume") Profile profile, Model model, BindingResult result) {
         {
             if (result.hasErrors()) {
                 return "addresume";
@@ -185,8 +202,8 @@ public class MainController {
 
             }
 
-            resumeRepository.save(resume);
-            model.addAttribute("resumelist",resumeRepository.findAll());
+            profileRepository.save(profile);
+            model.addAttribute("resumelist", profileRepository.findAll());
             return "resume.list";
         }
     }
@@ -200,7 +217,7 @@ public class MainController {
     public String showResumeprofileinfo(@PathVariable("id") long id, Model model) {
 
 //        Test to see if route fined all resume including new resume
-        model.addAttribute("resumelist", resumeRepository.findAll());
+        model.addAttribute("resumelist", profileRepository.findAll());
 
         return "resume.list";
     }
@@ -208,20 +225,20 @@ public class MainController {
 
     @GetMapping("/update/resume/{id}")
     public String updateResumeprofileinfo(@PathVariable("id") long id, Model model) {
-        model.addAttribute("resume", resumeRepository.findOne(id));
+        model.addAttribute("resume", profileRepository.findOne(id));
         return "addresume";
     }
 
     @GetMapping("/delete/resume/{id}")
     public String deleteResumeprofile(@PathVariable("id") long id, Model model) {
-        model.addAttribute("resume", resumeRepository.findOne(id));
-        resumeRepository.delete(id);
+        model.addAttribute("resume", profileRepository.findOne(id));
+        profileRepository.delete(id);
         return "resume.list";
     }
 
     @GetMapping("/resumeList")
     public String showresumelist(Model model){
-        model.addAttribute("resumelist",resumeRepository.findAll());
+        model.addAttribute("resumelist", profileRepository.findAll());
         return "resume.list";
     }
 
@@ -411,7 +428,7 @@ public class MainController {
         model.addAttribute("experiencelist",experienceRepository.findAll());
         model.addAttribute("educationlist",educationRepository.findAll());
         model.addAttribute("skilllist",skillsRepository.findAll());
-        model.addAttribute("resumelist",resumeRepository.findAll());
+        model.addAttribute("resumelist", profileRepository.findAll());
 
 
 
@@ -422,16 +439,16 @@ public class MainController {
 
 //        Binding a Model(Object Resumeid ) to parameter passed by button in "index" line 17 in header
 //        Saving resume model id from parameter to resume repo before adding model attribute
-//        Resume resume = resumeRepository.findOne( new Long (request.getParameter("id")));
+//        Profile resume = profileRepository.findOne( new Long (request.getParameter("id")));
 //        model.addAttribute("resume",resume);
 
 
 
 //        Testing for Thymeleaf model code for final resume output
-        //Getting Resume id containing all attributes
+        //Getting Profile id containing all attributes
 
 
-//        resume = resumeRepository.findOne(Long.valueOf(1));
+//        resume = profileRepository.findOne(Long.valueOf(1));
 //        for (Experience eachexperience: resume.experiences){
 //            System.out.println(eachexperience.getJobtitle());
 //        }
@@ -449,9 +466,9 @@ public class MainController {
 //        }
 //
 //
-//        System.out.println("Print Resume experiences using String"+resume.getExperiences().toString());
+//        System.out.println("Print Profile experiences using String"+resume.getExperiences().toString());
 //        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
-//        //Adding Resume id to model
+//        //Adding Profile id to model
         return "createresume2";
 
 

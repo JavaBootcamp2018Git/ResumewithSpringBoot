@@ -1,7 +1,7 @@
 package me.travisgray.demo.Models;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @Table(name="USER_DATA")
@@ -31,6 +31,14 @@ public class User {
     @Column(name="username")
     private String username;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Skills> skills;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Experience>experiences;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Education> educations;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name="user_id"),
@@ -38,7 +46,49 @@ public class User {
     private Collection<Role> roles;
 
     public User() {
+
+        educations = new HashSet<Education>();
+        skills = new HashSet<Skills>();
+        experiences = new HashSet<Experience>();
+        roles = new HashSet<Role>();
     }
+
+    public void addEducation(Education e){
+           this.educations.add(e);
+    }
+
+    public void addSkill(Skills s){
+        this.skills.add(s);
+    }
+
+    public void addExperience(Experience ex){
+        this.experiences.add(ex);
+    }
+
+    public Set<Skills> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<Skills> skills) {
+        this.skills = skills;
+    }
+
+    public Set<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(Set<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    public Set<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(Set<Education> educations) {
+        this.educations = educations;
+    }
+
 
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
         this.email = email;
@@ -47,6 +97,10 @@ public class User {
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        educations = new HashSet<Education>();
+        skills = new HashSet<Skills>();
+        experiences = new HashSet<Experience>();
+        roles = new HashSet<Role>();
     }
 
 

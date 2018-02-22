@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,13 +14,14 @@ public class Skills {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public Skills() {
+//    @ManyToMany(mappedBy = "skills")
+//    private Set<Profile> profiles;
 
-    }
+@ManyToMany(fetch = FetchType.EAGER)
+private Set<User> user;
 
-
-    @ManyToMany(mappedBy = "skills")
-    private Set<Resume>resumes;
+@ManyToMany(mappedBy = "skills" ,fetch = FetchType.EAGER)
+private Set<Job>jobs;
 
 
     @NotNull
@@ -30,6 +31,17 @@ public class Skills {
     @NotNull
     @NotEmpty
     private String skillrating;
+
+    public Skills() {
+
+        user = new HashSet<User>();
+        jobs = new HashSet<Job>();
+    }
+
+    public void addUser(User u){
+        this.user.add(u);
+    }
+
 
     public Skills(String skill, String skillrating) {
         this.skill = skill;
@@ -60,10 +72,32 @@ public class Skills {
         this.skillrating = skillrating;
     }
 
-//    public void addResume(Resume r){
-//       this.resumes.add(r);
+//    public void addResume(Profile r){
+//       this.profiles.add(r);
 //    }
 
 
+//    public Set<Profile> getProfiles() {
+//        return profiles;
+//    }
+//
+//    public void setProfiles(Set<Profile> profiles) {
+//        this.profiles = profiles;
+//    }
 
+    public Set<User> getUser() {
+        return user;
+    }
+
+    public void setUser(Set<User> user) {
+        this.user = user;
+    }
+
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
 }

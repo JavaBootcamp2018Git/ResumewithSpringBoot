@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,19 +13,11 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public Education() {
-    }
-
-    public Education(String degree, String major, String university, String gradyear) {
-        this.degree = degree;
-        this.major = major;
-        this.university = university;
-        this.gradyear = gradyear;
-    }
 
 
-    @ManyToMany(mappedBy = "educations")
-    private Set<Resume> resumes;
+//
+//    @ManyToMany(mappedBy = "educations")
+//    private Set<Profile> profiles;
 
     @NotNull
     @NotEmpty
@@ -42,6 +34,24 @@ public class Education {
     @NotEmpty
     @NotNull
     private String gradyear;
+
+    @ManyToMany(mappedBy = "educations",fetch = FetchType.LAZY)
+//    @JoinColumn(name="educationofuserid")
+    private Set<User> user;
+
+    public Education() {
+
+        user = new HashSet<User>();
+    }
+
+    public Education(String degree, String major, String university, String gradyear) {
+        this.degree = degree;
+        this.major = major;
+        this.university = university;
+        this.gradyear = gradyear;
+
+    }
+
 
     public long getId() {
         return id;

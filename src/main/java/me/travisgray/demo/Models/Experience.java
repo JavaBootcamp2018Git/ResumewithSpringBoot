@@ -1,6 +1,7 @@
 package me.travisgray.demo.Models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,8 +11,23 @@ public class Experience {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String jobtitle;
+
+    private String companytitle;
+
+    private String startDate;
+
+    private String endDate;
+
+    private String dutylist;
+
+    @ManyToMany( mappedBy = "experiences",fetch = FetchType.LAZY)
+    private Set<User> user;
 
     public Experience() {
+
+        user = new HashSet<User>();
+
     }
 
 
@@ -23,20 +39,6 @@ public class Experience {
         this.endDate = endDate;
         this.dutylist = dutylist;
     }
-
-
-    @ManyToMany(mappedBy = "experiences")
-    private Set<Resume> resumes;
-
-    private String jobtitle;
-
-    private String companytitle;
-
-    private String startDate;
-
-    private String endDate;
-
-    private String dutylist;
 
 
     public long getId() {
