@@ -53,6 +53,19 @@ public class User {
         roles = new HashSet<Role>();
     }
 
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.enabled = enabled;
+        this.username = username;
+        educations = new HashSet<Education>();
+        skills = new HashSet<Skills>();
+        experiences = new HashSet<Experience>();
+        roles = new HashSet<Role>();
+    }
+
     public void addEducation(Education e){
            this.educations.add(e);
     }
@@ -90,18 +103,7 @@ public class User {
     }
 
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.enabled = enabled;
-        this.username = username;
-        educations = new HashSet<Education>();
-        skills = new HashSet<Skills>();
-        experiences = new HashSet<Experience>();
-        roles = new HashSet<Role>();
-    }
+
 
 
 

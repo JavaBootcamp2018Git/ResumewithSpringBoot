@@ -34,6 +34,9 @@ public class MainController {
     RoleRepository roleRepository;
 
     @Autowired
+    JobRepository jobRepository;
+
+    @Autowired
     UserService userService;
 
 
@@ -474,6 +477,40 @@ public class MainController {
 
     }
 
+    @GetMapping("/addJob")
+    public String addjobform(Model model){
+        Job job = new Job();
+        model.addAttribute("job",new Job());
+        return "jobform";
+        }
+
+    @PostMapping("/addJob")
+    public String processjobform(Model model, @Valid @ModelAttribute("job") Job job, BindingResult result){
+        model.addAttribute("joblist",jobRepository.findAll());
+        return "joblist";
+    }
+
+    @GetMapping("/update/job/{id}")
+    public String updatejob(@PathVariable("id") long id, Model model) {
+        model.addAttribute("job",jobRepository.findOne(id));
+        return "jobform";
+    }
+
+    @GetMapping("/delete/job/{id}")
+    public String deletejob(@PathVariable("id") long id, Model model) {
+        model.addAttribute("job",jobRepository.findOne(id));
+        jobRepository.delete(id);
+        return "joblist";
+    }
+
+
+    @GetMapping("/detail/job/{id}")
+    public String showjob(@PathVariable("id") long id, Model model) {
+//        Test to see if route fined all educations including new user education
+//        Test to see if route fined all educations including new user education
+        model.addAttribute("joblist",jobRepository.findAll());
+        return "joblist";
+    }
 
 
 

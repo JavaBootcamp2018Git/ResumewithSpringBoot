@@ -107,7 +107,7 @@ public class DataLoader implements CommandLineRunner{
         experienceRepository.save(experience2);
         System.out.println(experience2.getJobtitle());
 
-        Job job1 = new Job("Montgormery College", "Java Coach","Teacher","$60,000");
+        Job job1 = new Job("Montgormery College", "Java Coach","Teacher","$60,000","Maryland College inc");
         jobRepository.save(job1);
         System.out.println(job1.getSkills());
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type = "text/css" href = "css/addformstyles.css"></link>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <div class="row header">
+        <h1>Resume Maker Pro Job Form&nbsp;</h1>
+        <h3>Fill out the form below to start add your Job Entry!</h3>
+    </div>
+    <div class="row body">
+        <form th:action="@{/addJob}" th:object="${job}" method="post">
+            <ul>
+                <input type="hidden" th:field="*{id}" />
+                <li>
+                    <p class="left">
+                        <label for="Employer">Employer</label>
+                        <input th:field="${job.employer}" type="text" name="employer" placeholder="employer" /><span th:if="${#fields.hasErrors('employer')}" th:errors="*{employer}"></span>
+                    </p>
+                    <p class="left">
+                        <label for="job_title">Title</label>
+                        <input th:field="${job.title}" type="text" name="job_title" placeholder="job title" /><span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                    </p>
+                    <p class="left">
+                        <label for="Descritpion">Description</label>
+                        <input th:field="${job.description}" type="text" name="start_date" placeholder="start date" /><span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></span>
+                    </p>
+                    <p class="left">
+                        <label for="Salary">Salary</label>
+                        <input th:field="${job.salary}" type="text" name="salary" placeholder="salary" /><span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+                    </p>
+                    <p class="left">
+                        <label for="Organization">Organization</label>
+                        <input th:field="${job.organization}" type="text" name="organization" placeholder="organization" /><span th:if="${#fields.hasErrors('organization')}" th:errors="*{organization}"></span>
+                    </p>
+                </li>
+
+
+                <li><div class="divider"></div></li>
+
+
+                <li>
+                    <input class="btn btn-submit" type="submit" value="Submit Experince" th:href="@{/addJob}" />
+                </li>
+
+            </ul>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

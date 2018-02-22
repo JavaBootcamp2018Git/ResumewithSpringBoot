@@ -20,15 +20,20 @@ public class Job {
 
     private String salary;
 
+    private String organization;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Skills>skills;
 
-    public Job(String employer, String title, String description, String salary) {
+
+
+    public Job(String employer, String title, String description, String salary, String organization) {
         this.employer = employer;
         this.title = title;
         this.description = description;
         this.salary = salary;
+        this.organization = organization;
         skills = new HashSet<Skills>();
 
     }
