@@ -70,12 +70,12 @@ public class MainController {
     }
 
     @PostMapping("/register")
-    public String processregistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model ){
+    public String processregistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model,HttpServletRequest request ){
 
         model.addAttribute("user",user);
         if(result.hasErrors()){
             return "registration";
-        }else{
+        } else{
             userService.saveUser(user);
             model.addAttribute("message","User Account Successfully Created");
         }
@@ -620,12 +620,12 @@ public class MainController {
 //
 //
 //
-//    @GetMapping("/showjobwithskills")
-//    public String showjobswithskillslist(Model model){
-//        model.addAttribute("joblist",jobRepository.findAll());
-//        model.addAttribute("skilllist",skillsRepository.findAll());
-//        return "joblistwithskills";
-//    }
+    @GetMapping("/showjobwithskills")
+    public String showjobswithskillslist(Model model){
+        model.addAttribute("joblist",jobRepository.findAll());
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        return "joblistwithskills";
+    }
 
 
 

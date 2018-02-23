@@ -24,30 +24,40 @@
             <a class="nav-link" th:href="@{/register}">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addEducation}">Add Education!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addEducation}">Add Education!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}" >Add Experience!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addExperience}" >Add Experience!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}">Add Skill!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addSkill}">Add Skill!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addResume}">Add Resume Profile!</a>
+            <a class="nav-link" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addSkill}">Add new Job Skill!</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addJob}">Add Job!</a>
+            <a class="nav-link"sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addResume}">Add Resume Profile!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"sec:authorize="hasAuthority('RECRUITER')"  th:href="@{/addJob}">Add Job!</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"sec:authorize="hasAuthority('RECRUITER')"  th:href="@{/addskillstojob/1}">Add Job to Skill!</a>
+        </li>
+        <li class="nav-item">
+
+            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/showjobwithskills}">Show Jobs and Skills!</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Edit Information List
             </a>
             <div class="dropdown-menu">
-            <a class="dropdown-item"sec:authorize="hasAuthority('USER')" th:href="@{/resumeList}">Show Resume Profile List!</a>
-            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/skillList}">Show Skill List!</a>
-            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/eduList}">Show Education List</a>
-            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/expList}">Show Experience List</a>
-                <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/JobList}">Show Job List</a>
+            <a class="dropdown-item"sec:authorize="hasAuthority('USER')"  sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/resumeList}">Show Resume Profile List!</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/skillList}">Show Skill List!</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/eduList}">Show Education List</a>
+            <a class="dropdown-item" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/expList}">Show Experience List</a>
+                <a class="dropdown-item" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/JobList}">Show Job List</a>
                 </div>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -69,13 +79,15 @@
     <div class="container">
         <h1>Job Finder/Resume Maker Pro</h1>
         <p th:fragment="currentuser"> Current Account:<span th:text ="${#authentication.getName()}"></span></p>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addCover}" class="btn btn-transparent">Create Cover Letter</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addJob}" class="btn btn-transparent">Create new Job!</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/JobList}" class="btn btn-transparent">Show Job List!</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}" class="btn btn-transparent" >Add Skill!</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
-        <a sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addResume}" >Create yours Resume Profile!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addCover}" >Create Cover Letter</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addJob}" >Create new Job!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/JobList}" >Show Job List!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('RECRUITER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/showjobwithskills}" >Show Job List!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}"  >Add Skill!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addEducation}" >Add Education!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addExperience}">Add Experience!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addskillstojob/1}" >Add Job to Skill!</a>
         <a class="btn btn-transparent" th:href="@{/createResume}">Show Resume</a>
         <a class="btn btn-transparent" th:href="@{/createcoverletter}">Show Cover Letter</a>
         <a class="btn btn-transparent" th:href="@{/register}">Register</a>

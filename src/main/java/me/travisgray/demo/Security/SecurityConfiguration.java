@@ -85,10 +85,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
-                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/addJob","/addskilltojob/**").permitAll()
+                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/showjobwithskills","/addSkill").permitAll()
 //                Only Admins can register other admin users no button access in nav bar
                 .antMatchers("/adminregister").access("hasAuthority('ADMIN')")
+                .antMatchers("/addskilltojob/**","/addJob").access("hasAuthority('RECRUITER')")
                 .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")
+                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('JOBSEEKER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
@@ -127,7 +129,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         withUser("user").password("password").authorities("USER").
         and().
 //                Employers
-        withUser("dave").password("begreat").authorities("ADMIN");
+        withUser("dave").password("begreat").authorities("ADMIN").
+                and().withUser("rec").password("recpassword").authorities("RECRUITER").
+                and().withUser("job").password("password").authorities("JOBSEEKER");
 
 //        Database Authentication must come after in memory authentication
         auth

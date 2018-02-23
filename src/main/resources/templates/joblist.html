@@ -63,15 +63,15 @@
         <td th:text="${job.salary}" ></td>
         <td th:text="${job.organization}"></td>
         <td>
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/job/{id}(id=${job.id})}" target="_self">
+            <p sec:authorize="hasAuthority('RECRUITER')" class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/update/job/{id}(id=${job.id})}" target="_self">
                 Change  Job Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/job/{id}(id=${job.id})}" target="_self">
+            <p sec:authorize="hasAuthority('RECRUITER')" class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/detail/job/{id}(id=${job.id})}" target="_self">
                 See All  Job Entries
             </a></p>
 
-            <p class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/job/{id}(id=${job.id})}" target="_self">
+            <p sec:authorize="hasAuthority('RECRUITER')" class="lead text-center"><a class="btn btn-lg btn-info" th:href="@{/delete/job/{id}(id=${job.id})}" target="_self">
                 Remove  Job Entries
             </a></p>
         </td>
