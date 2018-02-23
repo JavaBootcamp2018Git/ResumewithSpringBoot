@@ -531,29 +531,71 @@ public class MainController {
     @GetMapping("/addskillstojob/{id}")
     public String addSkilltoJob(@PathVariable("id") long jobid, Model model)
     {
-        Job job = jobRepository.findOne(jobid);
-        model.addAttribute("newjob",job);
-        System.out.println("===="+ jobid);
-        model.addAttribute("skilllist",skillsRepository.findAll());
+        Job thisjob = jobRepository.findOne(new Long(jobid));
+        Iterable skillsinJob = thisjob.getSkills();
+        model.addAttribute("job", thisjob);
+        model.addAttribute("skilllist",skillsRepository.findAllByJobsNotContaining(thisjob));
         return "skilladdjob";
     }
 
-    @PostMapping("/addskillstojob/{id}")
-    public String postskilltojob(Authentication auth,@PathVariable("id") long jobId, @ModelAttribute("skills") Skills skill,Model model, HttpServletRequest  request){
 
-//        Get current user test to see if recruiter?
-        auth.getName();
-        model.addAttribute("currentuser",auth);
+    @GetMapping("/addjobstoskill/{id}")
+    public String addJobtoskillid(@PathVariable("id") long skillid, Model model){
 
-       request.getParameter(skill.getSkill());
-       request.getParameter(skill.getSkillrating());
-        System.out.println(skill.getSkill());
-        System.out.println(skill.getSkillrating());
-        model.addAttribute("skilllist",skillsRepository.findAll());
-       return "skilladdjob";
-
-
+        model.addAttribute("skill",skillsRepository.findOne(new Long(skillid)));
+        model.addAttribute("joblist",jobRepository.findAll());
+        return "skilladdjob";
     }
+
+//    GetMapping form working post not supported errors
+    @PostMapping("/addjobstoskill/{jobid}")
+    public String addJobstoSkills(@RequestParam("skills")String skillid, @PathVariable("jobid") long jobid, @ModelAttribute("skill") Skills s,Model model){
+
+        s = skillsRepository.findOne(new Long(skillid));
+        s.addJob(jobRepository.findOne(new Long(jobid)));
+        skillsRepository.save(s);
+        model.addAttribute("joblist",jobRepository.findAll());
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        return "Redirect:/showjobwithskills";
+    }
+
+
+    @GetMapping("/showjobwithskills")
+    public String showjobswithskillslist(Model model){
+        model.addAttribute("joblist",jobRepository.findAll());
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        return "joblistwithskills";
+    }
+//test with this
+//    @PostMapping("/addmoviestoactor/{movid}")
+//    public String addMoviesToActor(@RequestParam("actors") String actorID, @PathVariable("movid") long movieID,  @ModelAttribute("anActor") Actor a, Model model)
+//
+//
+//    {
+//        System.out.println("Actor ID"+actorID);
+//        System.out.println("Movie ID"+movieID);
+//        Movie m = movieRepository.findOne(new Long(movieID));
+//        m.addActor(actorRepository.findOne(new Long(actorID)));
+//        movieRepository.save(m);
+//        model.addAttribute("actorList",actorRepository.findAll());
+//        model.addAttribute("movieList",movieRepository.findAll());
+//        System.out.println("Actor ID from anActor"+a.getId());
+//        return "redirect:/";
+//    }
+//
+//    @PostMapping("/addactorstomovie/{actorid}")
+//    public String addActorsToMovies(@RequestParam("movie") String movieID, @PathVariable("actor") long actorID, Model model)
+//    {
+//        System.out.println("Actor ID"+actorID);
+//        System.out.println("Movie ID"+movieID);
+//        Actor a = actorRepository.findOne(new Long(actorID));
+//        a.addMovie(movieRepository.findOne(new Long(movieID)));
+//        actorRepository.save(a);
+//        model.addAttribute("actorList",actorRepository.findAll());
+//        model.addAttribute("movieList",movieRepository.findAll());
+//        return "redirect:/";
+//    }
+
 
 
 }

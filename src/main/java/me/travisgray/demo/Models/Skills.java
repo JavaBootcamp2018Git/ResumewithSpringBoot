@@ -42,6 +42,10 @@ private Set<Job>jobs;
         this.user.add(u);
     }
 
+    public void addJob(Job j){
+        this.jobs.add(j);
+    }
+
 
     public Skills(String skill, String skillrating) {
         this.skill = skill;
