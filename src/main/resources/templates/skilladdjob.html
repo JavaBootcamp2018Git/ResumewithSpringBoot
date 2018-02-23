@@ -10,7 +10,7 @@
 
 <form th:action="@{/addskillstojob/{jobid}(jobid=${job.id})}" th:object="${skill}" method="post">
     <input type="text" th:value="${job.id}">
-    <label th:inline="text">Adding skills for [[${job.title}]]</label>
+    <label th:inline="text">Adding skills for Position: [[${job.title}]]</label>
 
     <select name="skills">
         <option th:each="skill : ${skilllist}" th:value="${skill.id}" th:text="${skill.skill}"></option>

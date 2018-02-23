@@ -23,7 +23,7 @@ public class Job {
     private String organization;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     private Set<Skills>skills;
 
 

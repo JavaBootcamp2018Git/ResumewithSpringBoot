@@ -20,16 +20,14 @@ public class Skills {
 @ManyToMany(fetch = FetchType.EAGER)
 private Set<User> user;
 
-@ManyToMany(mappedBy = "skills" ,fetch = FetchType.EAGER)
+@ManyToMany(mappedBy = "skills" ,cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 private Set<Job>jobs;
 
 
-    @NotNull
-    @NotEmpty
+
     private String skill;
 
-    @NotNull
-    @NotEmpty
+
     private String skillrating;
 
     public Skills() {

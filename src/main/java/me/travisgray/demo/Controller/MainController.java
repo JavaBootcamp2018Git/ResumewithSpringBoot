@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Controller
 public class MainController {
@@ -303,7 +305,9 @@ public class MainController {
 //Get mapping throwing id errors thymeleaf fixed by passing in model of skills other routes working without model attribute Thymeleaf fix
     @GetMapping("/skillList")
     public String showskilllist(Model model ,@ModelAttribute("skills")Skills skills){
+        Skills s = new Skills("Teacher","Advanced");
         model.addAttribute("skilllist",skillsRepository.findAll());
+        skillsRepository.save(s);
         return "skill.list";
     }
 
@@ -531,70 +535,99 @@ public class MainController {
     @GetMapping("/addskillstojob/{id}")
     public String addSkilltoJob(@PathVariable("id") long jobid, Model model)
     {
-        Job thisjob = jobRepository.findOne(new Long(jobid));
-        Iterable skillsinJob = thisjob.getSkills();
-        model.addAttribute("job", thisjob);
-        model.addAttribute("skilllist",skillsRepository.findAllByJobsNotContaining(thisjob));
+//        Job thisjob = jobRepository.findOne(new Long(jobid));
+//        Iterable skillsinJob = thisjob.getSkills();
+        model.addAttribute("job",jobRepository.findOne(new Long(jobid)));
+        model.addAttribute("skilllist",skillsRepository.findAll());
         return "skilladdjob";
     }
 
+    @PostMapping("/addskillstojob/{jobid}")
+    public String addSkillstoJobs(@ModelAttribute("skill") Skills s,@RequestParam("skills")String skillid, @PathVariable("jobid") long jobID, Model model){
 
-    @GetMapping("/addjobstoskill/{id}")
-    public String addJobtoskillid(@PathVariable("id") long skillid, Model model){
 
-        model.addAttribute("skill",skillsRepository.findOne(new Long(skillid)));
-        model.addAttribute("joblist",jobRepository.findAll());
-        return "skilladdjob";
-    }
 
-//    GetMapping form working post not supported errors
-    @PostMapping("/addjobstoskill/{jobid}")
-    public String addJobstoSkills(@RequestParam("skills")String skillid, @PathVariable("jobid") long jobid, @ModelAttribute("skill") Skills s,Model model){
+                System.out.println("JOBID"+jobID);
+        System.out.println();
+        Job j =jobRepository.findOne(new Long(jobID));
+        System.out.println(j.getTitle());
+
+
+        j.addskilltojob(s);
+        jobRepository.save(j);
 
         s = skillsRepository.findOne(new Long(skillid));
-        s.addJob(jobRepository.findOne(new Long(jobid)));
-        skillsRepository.save(s);
-        model.addAttribute("joblist",jobRepository.findAll());
-        model.addAttribute("skilllist",skillsRepository.findAll());
-        return "Redirect:/showjobwithskills";
-    }
 
 
-    @GetMapping("/showjobwithskills")
-    public String showjobswithskillslist(Model model){
+//        The TransientObjectException comes whenever you try to save the Object without saving the appropriate Joins.
+//                You have to save the UserInfoEntity first and afterwards you can save your PlayerInfoEntity class.
+//
+//        player.setUserId(new UserInfoEntity());
+//
+//        By using this you are assigning particular UserInfoEntity to PlayerInfoEntity.
+//                But UserInfoEntity does not have any ID. How would both get mapped ? That is why the exception is coming.
+
+
+        System.out.println(s.getSkill());
         model.addAttribute("joblist",jobRepository.findAll());
         model.addAttribute("skilllist",skillsRepository.findAll());
         return "joblistwithskills";
+
     }
-//test with this
-//    @PostMapping("/addmoviestoactor/{movid}")
-//    public String addMoviesToActor(@RequestParam("actors") String actorID, @PathVariable("movid") long movieID,  @ModelAttribute("anActor") Actor a, Model model)
+
+//    GetMapping form working post not supported errors
+//    @PostMapping("/addjobstoskill/{jobid}")
+//    public String addJobstoSkills(@RequestParam("skills")String skillid, @PathVariable("jobid") long jobid, @ModelAttribute("skill") Skills s,Model model){
 //
+//        s = skillsRepository.findOne(new Long(skillid));
+//        s.addJob(jobRepository.findOne(new Long(jobid)));
+//        skillsRepository.save(s);
+//        model.addAttribute("joblist",jobRepository.findAll());
+//        model.addAttribute("skilllist",skillsRepository.findAll());
+//        System.out.println("Skillid from skill"+s.getId());
+//        return "Redirect:/";
+//    }
+
+//    Not Working!
+//    @PostMapping("/addjobstoskill/{skillid}")
+//    public String addJob(@ModelAttribute("skill") String skill, HttpServletRequest request){
+//        return "Redirect:/showjobwithskills";
+//    }
+
+
+
+//    @GetMapping("/addjobstoskill/{id}")
+//    public String addJobtoskillid(@PathVariable("id") long skillid, Model model){
 //
-//    {
-//        System.out.println("Actor ID"+actorID);
-//        System.out.println("Movie ID"+movieID);
-//        Movie m = movieRepository.findOne(new Long(movieID));
-//        m.addActor(actorRepository.findOne(new Long(actorID)));
-//        movieRepository.save(m);
-//        model.addAttribute("actorList",actorRepository.findAll());
-//        model.addAttribute("movieList",movieRepository.findAll());
-//        System.out.println("Actor ID from anActor"+a.getId());
-//        return "redirect:/";
+//        model.addAttribute("skill",skillsRepository.findOne(new Long(skillid)));
+//        model.addAttribute("joblist",jobRepository.findAll());
+//        return "skilladdjob";
 //    }
 //
-//    @PostMapping("/addactorstomovie/{actorid}")
-//    public String addActorsToMovies(@RequestParam("movie") String movieID, @PathVariable("actor") long actorID, Model model)
-//    {
-//        System.out.println("Actor ID"+actorID);
-//        System.out.println("Movie ID"+movieID);
-//        Actor a = actorRepository.findOne(new Long(actorID));
-//        a.addMovie(movieRepository.findOne(new Long(movieID)));
-//        actorRepository.save(a);
-//        model.addAttribute("actorList",actorRepository.findAll());
-//        model.addAttribute("movieList",movieRepository.findAll());
-//        return "redirect:/";
+//
+////
+////
+//
+////    @PostMapping("/actorstomovie/{id}")
+//////    public String addActor(@ModelAttribute("mov") String mov, HttpServletRequest servletRequest)
+//////    {
+//////        return "redirect:/";
+//////
+//////    }
+//
+////
+////
+//
+//
+//
+//    @GetMapping("/showjobwithskills")
+//    public String showjobswithskillslist(Model model){
+//        model.addAttribute("joblist",jobRepository.findAll());
+//        model.addAttribute("skilllist",skillsRepository.findAll());
+//        return "joblistwithskills";
 //    }
+
+
 
 
 

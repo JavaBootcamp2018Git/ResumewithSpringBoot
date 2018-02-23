@@ -47,7 +47,7 @@
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/skillList}">Show Skill List!</a>
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/eduList}">Show Education List</a>
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/expList}">Show Experience List</a>
-                <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/JobList}">Show Experience List</a>
+                <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/JobList}">Show Job List</a>
                 </div>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -68,8 +68,11 @@
 <header class="bg-image" th:fragment="navbuttons">
     <div class="container">
         <h1>Job Finder/Resume Maker Pro</h1>
+        <p th:fragment="currentuser"> Current Account:<span th:text ="${#authentication.getName()}"></span></p>
         <a sec:authorize="hasAuthority('USER')" th:href="@{/addResume}" class="btn btn-transparent">Create yours Resume Profile!</a>
         <a sec:authorize="hasAuthority('USER')" th:href="@{/addCover}" class="btn btn-transparent">Create Cover Letter</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/addJob}" class="btn btn-transparent">Create new Job!</a>
+        <a sec:authorize="hasAuthority('USER')" th:href="@{/JobList}" class="btn btn-transparent">Show Job List!</a>
         <a sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}" class="btn btn-transparent" >Add Skill!</a>
         <a sec:authorize="hasAuthority('USER')" th:href="@{/addEducation}" class="btn btn-transparent">Add Education!</a>
         <a sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}" class="btn btn-transparent">Add Experience!</a>
