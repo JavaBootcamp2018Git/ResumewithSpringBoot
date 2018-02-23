@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface SkillsRepository extends CrudRepository<Skills,Long> {
 
+    long countAllByIdIs(long id);
 
-    Iterable<Skills> findAllBySkillContaining(Skills thisSkill);
+    Skills findBySkillAndSkillrating(String skill, String skillrating);
+
 }

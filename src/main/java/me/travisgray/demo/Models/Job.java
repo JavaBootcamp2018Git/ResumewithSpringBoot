@@ -94,4 +94,12 @@ public class Job {
     public void setSkills(Set<Skills> skills) {
         this.skills = skills;
     }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
 }
