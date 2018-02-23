@@ -47,6 +47,9 @@
         <li class="nav-item">
             <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addskillstojob/1}">Show Job to With Skill!</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/search}">Search!</a>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Edit Information List
@@ -87,7 +90,9 @@
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addExperience}">Add Experience!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addskillstojob/1}" >Add Job to Skill!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addskillstojob/1}" >Show Job with Skill!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/search}" >Search Organizations!</a>
         <a class="btn btn-transparent" th:href="@{/createResume}">Show Resume</a>
+        <a class="btn btn-transparent" th:href="@{/search}">Search</a>
         <a class="btn btn-transparent" th:href="@{/createcoverletter}">Show Cover Letter</a>
         <a class="btn btn-transparent" th:href="@{/register}">Register</a>
         <a class="btn btn-transparent" th:href="@{/login}">Login</a>

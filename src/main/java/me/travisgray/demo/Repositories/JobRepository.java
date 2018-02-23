@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface JobRepository extends CrudRepository<Job, Long>{
 
     Iterable<Job> findAllBySkillsIsIn(Iterable<Skills> skills);
+    Iterable<Job>findAllByOrganizationContainingIgnoreCase(String organization);
 }

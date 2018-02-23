@@ -537,6 +537,24 @@ public class MainController {
     }
 
 
+    @GetMapping("/search")
+    public String getSearch(){
+        return "searchform";
+    }
+
+    @PostMapping("/search")
+    public String showSearchResults(HttpServletRequest request, Model model){
+        String searchOrganization = request.getParameter("search");
+        model.addAttribute("search",searchOrganization);
+//
+
+//        Expecting multiple parameters or else will throw No parameter available Need to pass as many as are in constructor in Entity.
+        model.addAttribute("orgsearch",jobRepository.findAllByOrganizationContainingIgnoreCase(searchOrganization));
+//
+        return "searchjoblist";
+    }
+
+
     }
 
 
