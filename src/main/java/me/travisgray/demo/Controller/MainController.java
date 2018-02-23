@@ -498,7 +498,7 @@ public class MainController {
 
     @GetMapping("/delete/job/{id}")
     public String deletejob(@PathVariable("id") long id, Model model) {
-        model.addAttribute("job",jobRepository.findOne(id));
+        model.addAttribute("job ",jobRepository.findOne(id));
         jobRepository.delete(id);
         return "joblist";
     }
