@@ -28,6 +28,10 @@
 
 
             <tr th:each="job :${orgsearch}">
+                <td th:text="${job.employer}">Employer</td>
+                <td th:text="${job.organization}">Organization</td>
+                <td th:text="${job.description}">Description</td>
+                <td th:text="${job.salary}" >Salary</td>
                 <td th:text="${job.organization}">Organization</td>
             </tr>
             </tbody>
