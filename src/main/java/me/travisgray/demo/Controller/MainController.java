@@ -438,45 +438,6 @@ public class MainController {
         model.addAttribute("skilllist",skillsRepository.findAll());
         model.addAttribute("resumelist", profileRepository.findAll());
 
-
-
-
-
-
-        //
-
-//        Binding a Model(Object Resumeid ) to parameter passed by button in "index" line 17 in header
-//        Saving resume model id from parameter to resume repo before adding model attribute
-//        Profile resume = profileRepository.findOne( new Long (request.getParameter("id")));
-//        model.addAttribute("resume",resume);
-
-
-
-//        Testing for Thymeleaf model code for final resume output
-        //Getting Profile id containing all attributes
-
-
-//        resume = profileRepository.findOne(Long.valueOf(1));
-//        for (Experience eachexperience: resume.experiences){
-//            System.out.println(eachexperience.getJobtitle());
-//        }
-//
-//        for (Skills eachskill: resume.skills){
-//            System.out.println(eachskill.getSkill());
-//            System.out.println(eachskill.getSkillrating());
-//        }
-//
-//        for(Education eachEducation : resume.educations){
-//            System.out.println(eachEducation.getDegree());
-//            System.out.println(eachEducation.getMajor());
-//            System.out.println(eachEducation.getUniversity());
-//            System.out.println(eachEducation.getGradyear());
-//        }
-//
-//
-//        System.out.println("Print Profile experiences using String"+resume.getExperiences().toString());
-//        System.out.println("Printing whats in resume"+resume.getExperiences()+resume.getEducations()+resume.getSkills());
-//        //Adding Profile id to model
         return "createresume2";
 
 
@@ -575,60 +536,9 @@ public class MainController {
 
     }
 
-//    GetMapping form working post not supported errors
-//    @PostMapping("/addjobstoskill/{jobid}")
-//    public String addJobstoSkills(@RequestParam("skills")String skillid, @PathVariable("jobid") long jobid, @ModelAttribute("skill") Skills s,Model model){
-//
-//        s = skillsRepository.findOne(new Long(skillid));
-//        s.addJob(jobRepository.findOne(new Long(jobid)));
-//        skillsRepository.save(s);
-//        model.addAttribute("joblist",jobRepository.findAll());
-//        model.addAttribute("skilllist",skillsRepository.findAll());
-//        System.out.println("Skillid from skill"+s.getId());
-//        return "Redirect:/";
-//    }
 
-//    Not Working!
-//    @PostMapping("/addjobstoskill/{skillid}")
-//    public String addJob(@ModelAttribute("skill") String skill, HttpServletRequest request){
-//        return "Redirect:/showjobwithskills";
-//    }
-
-
-
-//    @GetMapping("/addjobstoskill/{id}")
-//    public String addJobtoskillid(@PathVariable("id") long skillid, Model model){
-//
-//        model.addAttribute("skill",skillsRepository.findOne(new Long(skillid)));
-//        model.addAttribute("joblist",jobRepository.findAll());
-//        return "skilladdjob";
-//    }
-//
-//
-////
-////
-//
-////    @PostMapping("/actorstomovie/{id}")
-//////    public String addActor(@ModelAttribute("mov") String mov, HttpServletRequest servletRequest)
-//////    {
-//////        return "redirect:/";
-//////
-//////    }
-//
-////
-////
-//
-//
-//
-    @GetMapping("/showjobwithskills")
-    public String showjobswithskillslist(Model model){
-        model.addAttribute("joblist",jobRepository.findAll());
-        model.addAttribute("skilllist",skillsRepository.findAll());
-        return "joblistwithskills";
     }
 
 
 
 
-
-}

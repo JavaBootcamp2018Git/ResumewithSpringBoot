@@ -45,8 +45,7 @@
             <a class="nav-link"sec:authorize="hasAuthority('RECRUITER')"  th:href="@{/addskillstojob/1}">Add Job to Skill!</a>
         </li>
         <li class="nav-item">
-
-            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/showjobwithskills}">Show Jobs and Skills!</a>
+            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addskillstojob/1}">Show Job to With Skill!</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -83,11 +82,11 @@
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addCover}" >Create Cover Letter</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addJob}" >Create new Job!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/JobList}" >Show Job List!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('RECRUITER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/showjobwithskills}" >Show Job List!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}"  >Add Skill!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}">Add Skill!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addEducation}" >Add Education!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addExperience}">Add Experience!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addskillstojob/1}" >Add Job to Skill!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addskillstojob/1}" >Show Job with Skill!</a>
         <a class="btn btn-transparent" th:href="@{/createResume}">Show Resume</a>
         <a class="btn btn-transparent" th:href="@{/createcoverletter}">Show Cover Letter</a>
         <a class="btn btn-transparent" th:href="@{/register}">Register</a>
