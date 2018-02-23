@@ -4,6 +4,7 @@ import me.travisgray.demo.Models.*;
 import me.travisgray.demo.Repositories.*;
 import me.travisgray.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -486,6 +487,20 @@ public class MainController {
 
     @PostMapping("/addJob")
     public String processjobform(Model model, @Valid @ModelAttribute("job") Job job, BindingResult result){
+
+        {
+            if (result.hasErrors()) {
+                return "jobform";
+            }
+        }
+
+        jobRepository.save(job);
+        model.addAttribute("joblist",jobRepository.findAll());
+        return "joblist";
+    }
+
+    @GetMapping("/JobList")
+    public String joblist(Model model){
         model.addAttribute("joblist",jobRepository.findAll());
         return "joblist";
     }
@@ -513,7 +528,32 @@ public class MainController {
     }
 
 
+    @GetMapping("/addskillstojob/{id}")
+    public String addSkilltoJob(@PathVariable("id") long jobid, Model model)
+    {
+        Job job = jobRepository.findOne(jobid);
+        model.addAttribute("newjob",job);
+        System.out.println("===="+ jobid);
+        model.addAttribute("skilllist",skillsRepository.findAll());
+        return "skilladdjob";
+    }
 
+    @PostMapping("/addskillstojob/{id}")
+    public String postskilltojob(Authentication auth,@PathVariable("id") long jobId, @ModelAttribute("skills") Skills skill,Model model, HttpServletRequest  request){
+
+//        Get current user test to see if recruiter?
+        auth.getName();
+        model.addAttribute("currentuser",auth);
+
+       request.getParameter(skill.getSkill());
+       request.getParameter(skill.getSkillrating());
+        System.out.println(skill.getSkill());
+        System.out.println(skill.getSkillrating());
+        model.addAttribute("skilllist",skillsRepository.findAll());
+       return "skilladdjob";
+
+
+    }
 
 
 }

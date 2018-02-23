@@ -85,7 +85,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
-                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/addJob").permitAll()
+                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/addJob","/addskilltojob/**").permitAll()
 //                Only Admins can register other admin users no button access in nav bar
                 .antMatchers("/adminregister").access("hasAuthority('ADMIN')")
                 .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")

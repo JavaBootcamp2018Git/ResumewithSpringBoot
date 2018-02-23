@@ -35,6 +35,9 @@
         <li class="nav-item">
             <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addResume}">Add Resume Profile!</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link"sec:authorize="hasAuthority('USER')"  th:href="@{/addJob}">Add Job!</a>
+        </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Edit Information List
@@ -44,7 +47,8 @@
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/skillList}">Show Skill List!</a>
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/eduList}">Show Education List</a>
             <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/expList}">Show Experience List</a>
-            </div>
+                <a class="dropdown-item" sec:authorize="hasAuthority('USER')" th:href="@{/JobList}">Show Experience List</a>
+                </div>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Resume Services
