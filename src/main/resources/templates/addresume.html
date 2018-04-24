@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head th:replace="index :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/addformstyles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/addformstyles.css">
+    <link rel="stylesheet" type="text/css" href="/../static/css/addformstyles.css">
+
+    <title>Register</title>
+    <link rel="stylesheet" href="css/navbarstyle.css">
+    <link rel="stylesheet" href="../static/css/addformstyles.css">
 </head>
 <body>
 <div class="container">
@@ -14,53 +19,73 @@
     </div>
     <div class="row body">
         <!--Dont forget form thymeleaf actions nesscary for thymeleaf to see route from controller and objects from model-->
-        <form th:action="@{/addResume}" th:object="${profile}" method="post">
+        <form th:action="@{/register}" th:object="${user}" method="POST">
             <ul>
+                <input type="hidden" th:field="*{id}"/>
 
                 <li>
                     <p class="left">
-                        <label for="first_name" >First name</label>
+                        <label for="username">Username <span class="req">*</span></label>
+                        <input th:field="*{username}" type="username" name="username"
+                               placeholder="Please Enter your new username"/>
+                    </p>
+                </li>
+                <li>
+                    <p class="left">
+                        <label for="password">Password <span class="req">*</span></label>
+                        <input th:field="*{password}" type="password" name="password"
+                               placeholder="Please Enter your new password"/>
+                    </p>
+                </li>
+                <li>
+                    <p class="left">
+                        <label for="first_name">First name</label>
                         <!--Make sure to use proper thymeleaf attributes for forms and fields not th:text-->
-                        <input th:field="${profile.firstname}" type="text" name="first_name" placeholder="firstname" />
+                        <input th:field="*{firstName}" type="text" name="first_name"
+                               placeholder="Please enter your firstname"/>
                     </p>
-                    <p class="pull-right">
+                    <p class="left">
                         <label for="last_name">Last name</label>
-                        <input th:field="${profile.lastname}"  type="text" name="last_name" placeholder="lastname" />
+                        <input th:field="*{lastName}" type="text" name="last_name"
+                               placeholder="Please enter your lastname"/>
                     </p>
                 </li>
 
                 <li>
-                    <p>
-                        <label for="email">email <span class="req">*</span></label>
-                        <input th:field="${profile.email}" type="email" name="email" placeholder="john.smith@gmail.com" />
+                    <p class="left">
+                        <label for="email">Email <span class="req">*</span></label>
+                        <input th:field="*{email}" type="email" name="email" placeholder="Please Enter your email"/>
                     </p>
                 </li>
 
 
                 <li>
-                    <p>
+                    <p class="left">
                         <label for="summary">Summary <span class="req">*</span></label>
-                        <input th:field="${profile.summary}" type="summary" name="summary" placeholder="Please Enter your Summary Here" />
+                        <input th:field="*{summary}" type="summary" name="summary"
+                               placeholder="Please Enter your Summary Here"/>
                     </p>
                 </li>
-
                 <li>
-                    <p>
+                    <p class="left">
                         <label for="references">References <span class="req">*</span></label>
-                        <input th:field="${profile.references}" type="references" name="references" placeholder="References" />
+                        <input th:field="*{references}" type="references" name="references"
+                               placeholder="Please Enter your References"/>
                     </p>
                 </li>
                 <li>
-                    <p>
-                        <label for="Image">Image URL</label>
-                        <input th:field="${profile.image}" type="text" placeholder="Please Enter Image URL" />
+                    <p class="left">
+                        <label for="Image">Profile Image URL</label>
+                        <input th:field="*{image}" type="text" placeholder="Paste your image URL"/>
                     </p>
                 </li>
-                <li><div class="divider"></div></li>
+                <li>
+                    <div class="divider"></div>
+                </li>
 
 
                 <li>
-                    <input class="btn btn-submit" type="submit" value="Submit Resume Intro Profile"  th:href="@{/addResume}"/>
+                    <input class="btn btn-submit" type="submit" value="Submit"/>
                 </li>
 
             </ul>
@@ -68,8 +93,14 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,6 +1,9 @@
 package me.travisgray.demo.Models;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
@@ -31,6 +34,17 @@ public class User {
     @Column(name="username")
     private String username;
 
+
+    @Column(name="references")
+    private String references;
+
+    @Column(name="summary")
+    private String summary;
+
+    @Column(name="image")
+    private String image;
+
+
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Skills> skills;
 
@@ -53,13 +67,17 @@ public class User {
         roles = new HashSet<Role>();
     }
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username, String references, String summary, String image) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        this.references = references;
+        this.summary = summary;
+        this.image = image;
         educations = new HashSet<Education>();
         skills = new HashSet<Skills>();
         experiences = new HashSet<Experience>();
@@ -103,9 +121,29 @@ public class User {
     }
 
 
+    public String getReferences() {
+        return references;
+    }
 
+    public void setReferences(String references) {
+        this.references = references;
+    }
 
+    public String getSummary() {
+        return summary;
+    }
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -27,8 +27,8 @@ public class MainController {
     @Autowired
     ExperienceRepository experienceRepository;
 
-    @Autowired
-    ProfileRepository profileRepository;
+//    @Autowired
+//    ProfileRepository profileRepository;
 
     @Autowired
     CoverLetterRepo coverLetterRepo;
@@ -38,6 +38,9 @@ public class MainController {
 
     @Autowired
     JobRepository jobRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     UserService userService;
@@ -66,7 +69,7 @@ public class MainController {
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user",new User());
-        return "registration";
+        return "addresume";
     }
 
     @PostMapping("/register")
@@ -74,7 +77,7 @@ public class MainController {
 
         model.addAttribute("user",user);
         if(result.hasErrors()){
-            return "registration";
+            return "addresume";
         } else{
             userService.saveUser(user);
             model.addAttribute("message","User Account Successfully Created");
@@ -86,7 +89,7 @@ public class MainController {
     @GetMapping("/adminregister")
     public String showadminRegistrationPage(Model model){
         model.addAttribute("user",new User());
-        return "registration";
+        return "addresume";
     }
 
     @PostMapping("/adminregister")
@@ -94,41 +97,16 @@ public class MainController {
 
         model.addAttribute("user",user);
         if(result.hasErrors()){
-            return "registration";
+            return "addresume";
         }else{
             //                Only Admins can register other admin users no button access in nav bar
             userService.saveAdmin(user);
             model.addAttribute("message","Admin Account Successfully Created");
+            model.addAttribute("resumelist",userRepository.findAll());
         }
         return "index";
     }
 
-
-
-
-
-
-
-
-
-
-    @GetMapping("/addResume")
-    public String addResume(Model model) {
-        //Creating Profile model for new form
-        Profile profile = new Profile();
-        model.addAttribute("resume", new Profile());
-        return "addresume";
-    }
-
-//    Find ID from resume the return to indexpage so that it see the id use path variable to make sure id is passed then return to index then whenn going to create reume route loop through
-//    Try this on on class to start then move into other collections
-
-//    @RequestMapping("/indexwithresume")
-//    public String showIndex(@ModelAttribute("resume") Profile resume,Model model) {
-//        model.addAttribute("resume", profileRepository.findAll());
-//        return "index";
-//
-//    }
 
     @RequestMapping("/")
     public String index(){
@@ -188,69 +166,6 @@ public class MainController {
         return "finalcoverletter";
 
     }
-
-
-
-
-
-
-
-
-
-
-    //Process and save Profile form Binding Result nesscary for Thymeleaf Valaidation
-    @PostMapping("/addResume")
-    public String saveResume(@Valid @ModelAttribute("resume") Profile profile, Model model, BindingResult result) {
-        {
-            if (result.hasErrors()) {
-                return "addresume";
-
-
-            }
-
-            profileRepository.save(profile);
-            model.addAttribute("resumelist", profileRepository.findAll());
-            return "resume.list";
-        }
-    }
-
-
-
-    //Updating id for skillslist Testing
-//    Passing id from prevously created skills
-
-    @GetMapping("/detail/resume/{id}")
-    public String showResumeprofileinfo(@PathVariable("id") long id, Model model) {
-
-//        Test to see if route fined all resume including new resume
-        model.addAttribute("resumelist", profileRepository.findAll());
-
-        return "resume.list";
-    }
-
-
-    @GetMapping("/update/resume/{id}")
-    public String updateResumeprofileinfo(@PathVariable("id") long id, Model model) {
-        model.addAttribute("resume", profileRepository.findOne(id));
-        return "addresume";
-    }
-
-    @GetMapping("/delete/resume/{id}")
-    public String deleteResumeprofile(@PathVariable("id") long id, Model model) {
-        model.addAttribute("resume", profileRepository.findOne(id));
-        profileRepository.delete(id);
-        return "resume.list";
-    }
-
-    @GetMapping("/resumeList")
-    public String showresumelist(Model model){
-        model.addAttribute("resumelist", profileRepository.findAll());
-        return "resume.list";
-    }
-
-
-
-
 
 
     @GetMapping("/addSkill")
@@ -436,9 +351,9 @@ public class MainController {
         model.addAttribute("experiencelist",experienceRepository.findAll());
         model.addAttribute("educationlist",educationRepository.findAll());
         model.addAttribute("skilllist",skillsRepository.findAll());
-        model.addAttribute("resumelist", profileRepository.findAll());
+        model.addAttribute("resumelist", userRepository.findAll());
 
-        return "createresume2";
+        return "createresume3";
 
 
     }
@@ -457,7 +372,7 @@ public class MainController {
             if (result.hasErrors()) {
                 return "jobform";
             }
-        }
+    }
 
         jobRepository.save(job);
         model.addAttribute("joblist",jobRepository.findAll());
@@ -546,6 +461,7 @@ public class MainController {
     public String showSearchResults(HttpServletRequest request, Model model){
         String searchOrganization = request.getParameter("search");
         model.addAttribute("search",searchOrganization);
+
 //
 
 //        Expecting multiple parameters or else will throw No parameter available Need to pass as many as are in constructor in Entity.

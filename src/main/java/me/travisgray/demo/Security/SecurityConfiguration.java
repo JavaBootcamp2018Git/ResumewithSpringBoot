@@ -68,7 +68,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserRepository userRepository;
-
 //    Overriding Spring security and passing in Service to look for userrepository database
 //    Get results of current user and what thier rights are
 
@@ -85,12 +84,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 //                .antmatchers: if you have a route you want to block off
 //                .permitall: dont need access pages everyone one can acees this route example:register
-                .antMatchers("/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/addSkill","/addskilltojob/**").permitAll()
+                .antMatchers("/templates/**","/js/**","/images/**","/static/**","/","/h2-console/**","/css/**","/js/**","/register","/createcoverletter","/createResume","/addSkill","/addskilltojob/**","/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").permitAll()
 //                Only Admins can register other admin users no button access in nav bar
                 .antMatchers("/adminregister").access("hasAuthority('ADMIN')")
                 .antMatchers("/addJob").access("hasAuthority('RECRUITER')")
-                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")
-                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('JOBSEEKER')")
+//                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('USER')")
+//                .antMatchers("/delete/**","/update/**","/expList","/addExperience","/eduList","/addEducation","/skillList","/addSkill","/addResume","/addCover","/resumeList").access("hasAuthority('JOBSEEKER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

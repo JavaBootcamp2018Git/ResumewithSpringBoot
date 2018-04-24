@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/navbarstyle.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/indexstylesheet.css"></link>
+    <link rel="stylesheet" href="css/resumestyle.css">
+</head>
+<body>
+<div th:replace="index :: navbar"></div>
+
+<div id="resume">
+    <div th:each="user : ${resumelist}">
+    <img th:src="${user.image}" alt="Travis Gray">
+    <h1 th:text="${user.firstName} + ${user.lastName}"></h1>
+    <p>Cell: <a href=#>555-666-7777</a>
+    <p>Web: <a href=#>traviscodes.com</a>
+    <p>Email: <a href=#>travis@gmail.com</a>
+    <p id="objective" th:text="${user.summary}">I am a reserved but ambitious young professional seeking a career that fits my professional skills, personality, and murderous tendencies. My good birth, excellent education and phenomenal mathematical faculty have allowed me to advance the prospects of several criminal enterprises.
+    </div>
+
+    <div th:each="education : ${educationlist}">
+        <dl>
+            <dt>Education
+            <dd>
+                <h2  th:text="${education.university}"></h2>
+            <strong>Degree:</strong> <p th:text="${education.degree}"><br/></p>
+            <strong>Major:</strong> <p th:text="${education.major}"><br/></p>
+            <strong>Year:</strong><p th:text="${education.gradyear}"><br/></p>
+    </dl>
+    </div>
+    <div th:each="skill : ${skilllist}">
+    <dl>
+        <dt>Skills
+        <dd>
+            <h2 th:text="${skill.skill}">Office Skills</h2>
+        <p th:text="${skill.skillrating}">Office and records management, database administration, event organization, customer support, travel coordination</p>
+    </dl>
+    </div>
+    <div th:each="experience : ${experiencelist}">
+    <dl>
+        <dt >Experience
+        <dd>
+            <h2 th:text="${experience.jobtitle}"></h2><span th:text="${experience.startDate}"></span><span>-</span><span th:text="${experience.endDate}"></span>
+            <ul>
+                <li th:text="${experience.dutylist}">
+            </ul>
+        </dd>
+    </dl>
+    </div>
+    <dl>
+        <dt>Hobbies
+        <dd>Cooking, Flim Production, Graphic Design
+    </dl>
+    <!--<div th:each="profile : ${resumelist}">-->
+    <!--<dl>-->
+        <!--<dt>References-->
+        <!--<dd>-->
+        <!--<p th:text="${profile.references}"></p>-->
+    <!--</dl>-->
+    <!--</div>-->
+    <p class="objective" style="margin-top:2rem;">(<a href="http://thenewcode.com/553/Build-A-Responsive-Web-Résumé">Return to the original blog article</a>.)
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

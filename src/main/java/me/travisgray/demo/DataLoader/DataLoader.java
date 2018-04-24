@@ -22,9 +22,6 @@ public class DataLoader implements CommandLineRunner{
     ExperienceRepository experienceRepository;
 
     @Autowired
-    ProfileRepository profileRepository;
-
-    @Autowired
     UserRepository userRepository;
 
     @Autowired
@@ -55,45 +52,45 @@ public class DataLoader implements CommandLineRunner{
 
 
 
-        User recruiterrole1 =  new User("rec@virgin.com", "password", "recfirst", "reclast", true, "rec1");
+        User recruiterrole1 =  new User("rec@virgin.com", "password", "recfirst", "reclast", true, "rec1","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         recruiterrole1.setRoles(Arrays.asList(recruiterRole));
         userRepository.save(recruiterrole1);
 
 
-        User jobseekerrole1 = new User("job@virgin.com", "password", "jobfirst", "joblast", true, "job1");
+        User jobseekerrole1 = new User("job@virgin.com", "password", "jobfirst", "joblast", true, "job1","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         jobseekerrole1.setRoles(Arrays.asList(jobseekerRole));
         userRepository.save(jobseekerrole1);
 
 
         // Add user roles
-        User user1 = new User("bob@burger.com", "password", "Bobby", "Burger", true, "bob");
+        User user1 = new User("bob@burger.com", "password", "Bobby", "Burger", true, "bob","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         user1.setRoles(Arrays.asList(userRole));
         userRepository.save(user1);
 //
 //
 //
-        User user2 = new User("jane@virgin.com", "password", "Jane", "Virgin", true, "jane");
+        User user2 = new User("jane@virgin.com", "password", "Jane", "Virgin", true, "jane","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         user2.setRoles(Arrays.asList(userRole));
         userRepository.save(user2);
 
         // Add admin roles
-        User user3 = new User("admin@secure.com", "password", "Admin", "User", true, "admin");
+        User user3 = new User("admin@secure.com", "password", "Admin", "User", true, "admin","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         user3.setRoles(Arrays.asList(adminRole));
         userRepository.save(user3);
 //
-        User user4 = new User("clark@kent.com", "password", "Clark", "Kent", true, "clark");
+        User user4 = new User("clark@kent.com", "password", "Clark", "Kent", true, "clark","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg");
         user4.setRoles(Arrays.asList(userRole, adminRole));
         userRepository.save(user4);
 
-//        DataLoader Profile Test for View
-        Profile resume = new Profile("Travis","Gray","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg","t123@gmail.com");
-        profileRepository.save(resume);
+////        DataLoader Profile Test for View
+//        Profile resume = new Profile("Travis","Gray","bob the builder","Experince with Real Estate Development and Construction materials","http://sguru.org/wp-content/uploads/2017/06/cool-anonymous-profile-pictures-1699946_orig.jpg","t123@gmail.com");
+//        profileRepository.save(resume);
 
         Skills skills1 = new Skills("Java Spring Boot Development","Intermediate");
         skillsRepository.save(skills1);
 
 
-        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State University","Graduation: 2015");
+        Education education1 = new Education("Bachelors of Science","Biobehavioral Health","Penn State University","2015");
         educationRepository.save(education1);
 
 
@@ -109,8 +106,9 @@ public class DataLoader implements CommandLineRunner{
 
         Job job1 = new Job("Montgormery College", "Java Coach","Teacher","$60,000","Maryland College inc");
         jobRepository.save(job1);
-        System.out.println(job1.getSkills());
 
+        Job job2 = new Job("Maryland College", "Gym Coach","Teacher","$60,000","Maryland College inc");
+        jobRepository.save(job2);
 
         user1.addEducation(education1);
         userRepository.save(user1);

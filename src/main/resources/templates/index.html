@@ -81,13 +81,13 @@
     <div class="container">
         <h1>Job Finder/Resume Maker Pro</h1>
         <p th:fragment="currentuser"> Current Account:<span th:text ="${#authentication.getName()}"></span></p>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addResume}" >Create yours Resume Profile!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addCover}" >Create Cover Letter</a>
+        <!--<a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addResume}" >Create yours Resume Profile!</a>-->
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')"  th:href="@{/addCover}" >Create Cover Letter</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addJob}" >Create new Job!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/JobList}" >Show Job List!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/JobList}" >Show Job List!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addSkill}">Add Skill!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addEducation}" >Add Education!</a>
-        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addExperience}">Add Experience!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')"  th:href="@{/addEducation}" >Add Education!</a>
+        <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/addExperience}">Add Experience!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('RECRUITER')" th:href="@{/addskillstojob/1}" >Add Job to Skill!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('JOBSEEKER')" th:href="@{/addskillstojob/1}" >Show Job with Skill!</a>
         <a class="btn btn-transparent" sec:authorize="hasAuthority('USER')" th:href="@{/search}" >Search Organizations!</a>

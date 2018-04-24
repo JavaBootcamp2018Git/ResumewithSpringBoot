@@ -53,12 +53,12 @@
         <th>Image</th>
     </tr>
 
-    <tr th:each="profile : ${resumelist}">
-        <td th:text="${profile.firstname}"></td>
-        <td th:text="${profile.lastname}"></td>
-        <td th:text="${profile.references}"></td>
-        <td th:text="${profile.summary}"></td>
-        <td><img th:src="${profile.image}" style="height: 200px"></td>
+    <tr th:each="user : ${resumelist}">
+        <td th:text="${user.firstname}"></td>
+        <td th:text="${user.lastname}"></td>
+        <td th:text="${user.references}"></td>
+        <td th:text="${user.summary}"></td>
+        <td><img th:src="${user.image}" style="height: 200px"></td>
     </tr>
 </table>
 <h2>Educational Information</h2>
